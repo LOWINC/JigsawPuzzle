@@ -1,0 +1,20 @@
+.layout {
+  display: flex;
+
+}
+
+.operater,
+.preview {
+  padding: 30px;
+  margin: 30px;
+  border: 1px solid darkcyan;
+}
+
+
+.components {
+  margin-bottom: 10px;
+}
+
+.elements {
+  margin-bottom: 10px;
+}
