@@ -11,7 +11,10 @@ import style from "./index.module.css";
 const Jigsaw = () => {
   const [arr, setArr] = useState<
     {
-      value: any[];
+      value: {
+        type: JigsawElements;
+        [key: string]: any;
+      }[];
       type: JigsawComponents;
     }[]
   >([]);

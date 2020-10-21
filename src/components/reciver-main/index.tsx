@@ -1,11 +1,17 @@
 import React from "react";
 import {useDrop} from "react-dnd";
-import {JigsawComponents} from "../../constant";
+import {JigsawComponents, JigsawElements} from "../../constant";
 import ReciverElement from "../reciver-element";
 import style from "./index.module.css";
 
 interface Props {
-  value: any[];
+  value: {
+    type: JigsawComponents;
+    value: {
+      type: JigsawElements;
+      [key: string]: any;
+    }[];
+  }[];
 }
 
 const ReciverMain: React.FC<Props> = (props) => {
