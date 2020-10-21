@@ -20,7 +20,11 @@ const Jigsaw = () => {
     console.log(item);
     console.log(dropResult);
 
-    setArr([...arr, {...item}]);
+    const newArr = immer(arr, (draft) => {
+      return [...draft, item];
+    });
+
+    setArr(newArr);
   };
 
   const handleElementDropEnd = (
@@ -86,6 +90,8 @@ const Jigsaw = () => {
       ),
     },
   ];
+
+  console.dir(arr);
 
   return (
     <DndProvider backend={HTML5Backend}>

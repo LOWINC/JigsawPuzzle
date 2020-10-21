@@ -22,20 +22,13 @@ const ReciverMain: React.FC<Props> = (props) => {
     },
   });
 
-  const handleElementDrop = (params: any) => {
-    console.log("handleElementDrop:", params);
-  };
-
   return (
     <div ref={drop} className={style["component"]}>
       <div className={style["box"]}>
         {props.value.map((item, index) => (
-          <ReciverElement
-            key={index}
-            index={index}
-            value={item.value || []}
-            onDrop={handleElementDrop}
-          />
+          <div className={style["item"]} key={index}>
+            <ReciverElement index={index} value={item.value || []} />
+          </div>
         ))}
       </div>
     </div>
