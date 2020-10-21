@@ -20,9 +20,6 @@ const Jigsaw = () => {
   >([]);
 
   const handleComponentDropEnd = (item: any, dropResult: any) => {
-    console.log(item);
-    console.log(dropResult);
-
     const newArr = immer(arr, (draft) => {
       return [...draft, item];
     });
@@ -94,7 +91,21 @@ const Jigsaw = () => {
     },
   ];
 
-  console.dir(arr);
+  const handleElementMove = (params: {
+    componentIndex: number;
+    dragIndex: number;
+    hoverIndex: number;
+  }) => {
+    const {componentIndex, dragIndex, hoverIndex} = params;
+    console.log(
+      "componentIndex:",
+      componentIndex,
+      "dragIndex:",
+      dragIndex,
+      "hoverIndex:",
+      hoverIndex
+    );
+  };
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -115,7 +126,7 @@ const Jigsaw = () => {
 
           <div className={style["preview"]}>
             <div className={style["json"]}>
-              <ReciverMain value={arr} />
+              <ReciverMain value={arr} onElementMove={handleElementMove} />
             </div>
           </div>
         </div>
