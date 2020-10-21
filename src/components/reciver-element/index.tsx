@@ -1,23 +1,32 @@
 import React from "react";
 import {useDrop} from "react-dnd";
-import {JigsawComponents} from "../../constant";
+import {JigsawElements} from "../../constant";
 import style from "./index.module.css";
 
 interface Props {
   value: any[];
+  index: number;
+  onDrop: (params: any) => any;
 }
 
-const ReciverComponent: React.FC<Props> = (props) => {
-  const [{canDrop, isOver}, drop] = useDrop({
-    accept: Object.keys(JigsawComponents),
-    drop: () => ({name: "ReciverComponent"}),
+const ReciverElement: React.FC<Props> = (props) => {
+  const [, drop] = useDrop({
+    accept: Object.keys(JigsawElements),
+    drop: () => {
+      props.onDrop({
+        index: props.index,
+        name: "ReciverElement",
+      });
+      return {
+        index: props.index,
+        name: "ReciverElement",
+      };
+    },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
     }),
   });
-
-  console.log("canDrop:", canDrop, "isOver:", isOver);
 
   return (
     <div ref={drop} className={style["component"]}>
@@ -30,4 +39,4 @@ const ReciverComponent: React.FC<Props> = (props) => {
   );
 };
 
-export default ReciverComponent;
+export default ReciverElement;

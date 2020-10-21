@@ -1,0 +1,11 @@
+.box {
+  width: 200px;
+  min-height: 300px;
+  background-color: aliceblue;
+  margin-bottom: 10px;
+}
+
+.element {
+  margin-bottom: 10px;
+  background-color: aquamarine;
+}
