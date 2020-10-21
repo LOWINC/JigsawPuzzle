@@ -2,12 +2,8 @@ import immer from "immer";
 import React, {useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
-import ComponentBlock from "../../components/component-block";
-import ComponentLine from "../../components/component-line";
-import ComponentSwiper from "../../components/component-swiper";
-import ElementBanner from "../../components/element-banner";
-import ElementCard from "../../components/element-card";
-import ElementGoods from "../../components/element-goods";
+import Component from "../../components/component";
+import Element from "../../components/element";
 import ReciverMain from "../../components/reciver-main";
 import {JigsawComponents, JigsawElements} from "../../constant";
 import style from "./index.module.css";
@@ -20,57 +16,10 @@ const Jigsaw = () => {
     }[]
   >([]);
 
-  const components = [
-    {
-      type: JigsawComponents.Block,
-      render: () => (
-        <ComponentBlock
-          name={JigsawComponents.Block}
-          onEnd={handleComponentDropEnd}
-        />
-      ),
-    },
-    {
-      type: JigsawComponents.Line,
-      render: () => (
-        <ComponentLine
-          name={JigsawComponents.Line}
-          onEnd={handleComponentDropEnd}
-        />
-      ),
-    },
-    {
-      type: JigsawComponents.Swiper,
-      render: () => (
-        <ComponentSwiper
-          name={JigsawComponents.Swiper}
-          onEnd={handleComponentDropEnd}
-        />
-      ),
-    },
-  ];
-
-  const elements = [
-    {
-      type: JigsawElements.Banner,
-      render: () => (
-        <ElementBanner
-          name={JigsawElements.Banner}
-          onEnd={handleElementDropEnd}
-        />
-      ),
-    },
-    {
-      type: JigsawElements.Card,
-      render: () => <ElementCard />,
-    },
-    {
-      type: JigsawElements.Goods,
-      render: () => <ElementGoods />,
-    },
-  ];
-
   const handleComponentDropEnd = (item: any, dropResult: any) => {
+    console.log(item);
+    console.log(dropResult);
+
     setArr([...arr, {...item}]);
   };
 
@@ -87,19 +36,70 @@ const Jigsaw = () => {
     setArr(newArr);
   };
 
+  const components = [
+    {
+      Element: (
+        <Component
+          name={JigsawComponents.Swiper}
+          onEnd={handleComponentDropEnd}
+        >
+          {JigsawComponents.Swiper}
+        </Component>
+      ),
+    },
+    {
+      Element: (
+        <Component name={JigsawComponents.Block} onEnd={handleComponentDropEnd}>
+          {JigsawComponents.Block}
+        </Component>
+      ),
+    },
+    {
+      Element: (
+        <Component name={JigsawComponents.Line} onEnd={handleComponentDropEnd}>
+          {JigsawComponents.Line}
+        </Component>
+      ),
+    },
+  ];
+
+  const elements = [
+    {
+      Element: (
+        <Element name={JigsawElements.Banner} onEnd={handleElementDropEnd}>
+          {JigsawElements.Banner}
+        </Element>
+      ),
+    },
+    {
+      Element: (
+        <Element name={JigsawElements.Card} onEnd={handleElementDropEnd}>
+          {JigsawElements.Card}
+        </Element>
+      ),
+    },
+    {
+      Element: (
+        <Element name={JigsawElements.Goods} onEnd={handleElementDropEnd}>
+          {JigsawElements.Goods}
+        </Element>
+      ),
+    },
+  ];
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div className={style["page"]}>
         <div className={style["layout"]}>
           <div className={style["operater"]}>
             <div className={style["components"]}>
-              {components.map((item) => (
-                <div key={item.type}>{item.render()}</div>
+              {components.map((item, index) => (
+                <div key={index}>{item.Element}</div>
               ))}
             </div>
             <div className={style["elements"]}>
-              {elements.map((item) => (
-                <div key={item.type}>{item.render()}</div>
+              {elements.map((item, index) => (
+                <div key={index}>{item.Element}</div>
               ))}
             </div>
           </div>

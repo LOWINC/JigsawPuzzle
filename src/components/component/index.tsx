@@ -7,8 +7,8 @@ interface Props {
   onEnd: (item: any, dropResult: any) => any;
 }
 
-const ComponentSwiper: React.FC<Props> = (props) => {
-  const [{isDragging}, drag] = useDrag({
+const Component: React.FC<Props> = (props) => {
+  const [, drag] = useDrag({
     item: {name: props.name, type: props.name},
     end: (item: {name: string} | undefined, monitor: DragSourceMonitor) => {
       const dropResult = monitor.getDropResult();
@@ -23,11 +23,9 @@ const ComponentSwiper: React.FC<Props> = (props) => {
 
   return (
     <div ref={drag} className={style["component"]}>
-      <button className={style["btn"]}>
-        ComponentSwiper:{isDragging ? "isDragging" : "notDragging"}
-      </button>
+      <button className={style["btn"]}>{props.children}</button>
     </div>
   );
 };
 
-export default ComponentSwiper;
+export default Component;
