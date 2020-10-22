@@ -5,11 +5,20 @@ import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import Component from "../../components/component";
 import Element from "../../components/element";
+import Form from "../../components/form";
 import ReciverMain from "../../components/reciver-main";
 import {JigsawComponents, JigsawElements} from "../../constant";
 import style from "./index.module.css";
 
 const Jigsaw = () => {
+  const [edit, setEdit] = useState(
+    {} as {
+      elementIndex: number;
+      componentIndex: number;
+      elementType: JigsawElements;
+    }
+  );
+
   const [arr, setArr] = useState<
     {
       value: {
@@ -92,6 +101,19 @@ const Jigsaw = () => {
     },
   ];
 
+  const handleElementSelect = (params: {
+    elementIndex: number;
+    elementType: JigsawElements;
+    componentIndex: number;
+  }) => {
+    setEdit({
+      componentIndex: params.componentIndex,
+      elementIndex: params.elementIndex,
+      elementType: params.elementType,
+    });
+    console.log(params);
+  };
+
   const handleElementMove = (params: {
     componentIndex: number;
     dragIndex: number;
@@ -137,8 +159,15 @@ const Jigsaw = () => {
 
           <div className={style["preview"]}>
             <div className={style["json"]}>
-              <ReciverMain value={arr} onElementMove={handleElementMove} />
+              <ReciverMain
+                value={arr}
+                onElementMove={handleElementMove}
+                onElementSelect={handleElementSelect}
+              />
             </div>
+          </div>
+          <div className={style["form"]}>
+            <Form type={edit.elementType} onConfirm={console.log}></Form>
           </div>
         </div>
       </div>

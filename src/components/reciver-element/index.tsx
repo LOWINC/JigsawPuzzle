@@ -12,6 +12,10 @@ interface Props {
     dragIndex: number;
     hoverIndex: number;
   }) => any;
+  onElementSelect: (params: {
+    elementIndex: number;
+    elementType: JigsawElements;
+  }) => any;
 }
 
 const ReciverElement: React.FC<Props> = (props) => {
@@ -52,7 +56,17 @@ const ReciverElement: React.FC<Props> = (props) => {
             type={item.type}
             move={handleMove}
           >
-            <div className={style["item"]}>{item.type}</div>
+            <div
+              className={style["item"]}
+              onClick={() =>
+                props.onElementSelect({
+                  elementIndex: index,
+                  elementType: item.type,
+                })
+              }
+            >
+              {item.type}
+            </div>
           </Sort>
         ))}
       </div>

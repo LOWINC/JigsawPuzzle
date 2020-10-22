@@ -17,6 +17,11 @@ interface Props {
     dragIndex: number;
     hoverIndex: number;
   }) => any;
+  onElementSelect: (params: {
+    elementIndex: number;
+    componentIndex: number;
+    elementType: JigsawElements;
+  }) => any;
 }
 
 const ReciverMain: React.FC<Props> = (props) => {
@@ -42,6 +47,13 @@ const ReciverMain: React.FC<Props> = (props) => {
               index={index}
               value={item.value || []}
               onElementMove={props.onElementMove}
+              onElementSelect={({elementIndex, elementType}) =>
+                props.onElementSelect({
+                  elementIndex: elementIndex,
+                  elementType: elementType,
+                  componentIndex: index,
+                })
+              }
             />
           </div>
         ))}
