@@ -1,6 +1,6 @@
 import immer from "immer";
 import {clone} from "lodash";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import Component from "../../components/component";
@@ -8,7 +8,10 @@ import Element from "../../components/element";
 import Form from "../../components/form";
 import ReciverMain from "../../components/reciver-main";
 import {JigsawComponents, JigsawElements} from "../../constant";
+import {Iframe} from "../../utils/postmessage";
 import style from "./index.module.css";
+
+let iframe = {} as Iframe;
 
 const Jigsaw = () => {
   const [edit, setEdit] = useState(
@@ -28,6 +31,14 @@ const Jigsaw = () => {
       type: JigsawComponents;
     }[]
   >([]);
+
+  useEffect(() => {
+    iframe = new Iframe("iframe");
+  }, []);
+
+  useEffect(() => {
+    iframe.postMessage(arr);
+  }, [arr]);
 
   const handleComponentDropEnd = (item: any, dropResult: any) => {
     const newArr = immer(arr, (draft) => {
@@ -111,6 +122,7 @@ const Jigsaw = () => {
       elementIndex: params.elementIndex,
       elementType: params.elementType,
     });
+
     console.log(params);
   };
 
@@ -165,6 +177,14 @@ const Jigsaw = () => {
                 onElementSelect={handleElementSelect}
               />
             </div>
+          </div>
+          <div className='html'>
+            <iframe
+              id='iframe'
+              className={style["iframe"]}
+              title='html'
+              src='http://localhost:10090/mobile'
+            />
           </div>
           <div className={style["form"]}>
             <Form type={edit.elementType} onConfirm={console.log}></Form>
