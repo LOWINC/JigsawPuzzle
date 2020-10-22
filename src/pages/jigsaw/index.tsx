@@ -1,4 +1,5 @@
 import immer from "immer";
+import {clone} from "lodash";
 import React, {useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
@@ -97,14 +98,24 @@ const Jigsaw = () => {
     hoverIndex: number;
   }) => {
     const {componentIndex, dragIndex, hoverIndex} = params;
-    console.log(
-      "componentIndex:",
-      componentIndex,
-      "dragIndex:",
-      dragIndex,
-      "hoverIndex:",
-      hoverIndex
-    );
+
+    if (typeof dragIndex !== "number" || typeof hoverIndex !== "number") {
+      return;
+    }
+
+    const data = arr[componentIndex].value;
+
+    const dragVal = data[dragIndex];
+    const hoverVal = data[hoverIndex];
+    const temp = clone(data);
+    temp[dragIndex] = hoverVal;
+    temp[hoverIndex] = dragVal;
+
+    const newArr = immer(arr, (draft) => {
+      draft[componentIndex].value = temp;
+      return draft;
+    });
+    setArr(newArr);
   };
 
   return (
