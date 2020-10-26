@@ -1,5 +1,4 @@
 import immer from "immer";
-import {clone} from "lodash";
 import React, {useEffect, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
@@ -9,6 +8,7 @@ import Form from "../../components/form";
 import ReciverMain from "../../components/reciver-main";
 import {JigsawComponents, JigsawElements} from "../../constant";
 import {Iframe} from "../../utils/postmessage";
+import {swap} from "../../utils/swap";
 import style from "./index.module.css";
 
 let iframe = {} as Iframe;
@@ -26,9 +26,11 @@ const Jigsaw = () => {
     {
       value: {
         type: JigsawElements;
+        __key: number;
         [key: string]: any;
       }[];
       type: JigsawComponents;
+      __key: number;
     }[]
   >([]);
 
@@ -37,15 +39,21 @@ const Jigsaw = () => {
   }, []);
 
   useEffect(() => {
-    iframe.postMessage(arr);
+    iframe.postData(arr);
   }, [arr]);
 
   const handleComponentDropEnd = (item: any, dropResult: any) => {
     const newArr = immer(arr, (draft) => {
-      return [...draft, item];
+      return [
+        ...draft,
+        {
+          ...item,
+          __key: new Date().getTime(),
+        },
+      ];
     });
 
-    setArr(newArr);
+    setArr(newArr.filter((item) => !!item));
   };
 
   const handleElementDropEnd = (
@@ -54,11 +62,18 @@ const Jigsaw = () => {
   ) => {
     const newArr = immer(arr, (draft) => {
       const oldItems = arr[result.index].value || [];
-      const value = [...oldItems, item];
+      const value = [
+        ...oldItems,
+        {
+          ...item,
+          __key: new Date().getTime(),
+        },
+      ];
       draft[result.index].value = value;
       return draft;
     });
-    setArr(newArr);
+
+    setArr(newArr.filter((item) => !!item));
   };
 
   const components = [
@@ -126,6 +141,18 @@ const Jigsaw = () => {
     console.log(params);
   };
 
+  const handleComponentMove = (params: {
+    componentIndex: number;
+    dragIndex: number;
+    hoverIndex: number;
+  }) => {
+    const {dragIndex, hoverIndex} = params;
+    if (typeof dragIndex !== "number" || typeof hoverIndex !== "number") {
+      return;
+    }
+    setArr(swap(arr, dragIndex, hoverIndex));
+  };
+
   const handleElementMove = (params: {
     componentIndex: number;
     dragIndex: number;
@@ -137,19 +164,15 @@ const Jigsaw = () => {
       return;
     }
 
-    const data = arr[componentIndex].value;
-
-    const dragVal = data[dragIndex];
-    const hoverVal = data[hoverIndex];
-    const temp = clone(data);
-    temp[dragIndex] = hoverVal;
-    temp[hoverIndex] = dragVal;
-
-    const newArr = immer(arr, (draft) => {
-      draft[componentIndex].value = temp;
-      return draft;
-    });
-    setArr(newArr);
+    setArr(
+      immer(arr, (draft) => {
+        draft[componentIndex].value = swap(
+          arr[componentIndex].value,
+          dragIndex,
+          hoverIndex
+        );
+      })
+    );
   };
 
   return (
@@ -175,6 +198,7 @@ const Jigsaw = () => {
                 value={arr}
                 onElementMove={handleElementMove}
                 onElementSelect={handleElementSelect}
+                onComponentMove={handleComponentMove}
               />
             </div>
           </div>

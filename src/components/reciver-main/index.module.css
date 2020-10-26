@@ -13,3 +13,8 @@
 .item {
   margin-bottom: 30px;
 }
+
+.elementWrapper {
+  padding-top: 30px;
+  background-color: red;
+}
