@@ -39,7 +39,8 @@ const Jigsaw = () => {
   }, []);
 
   useEffect(() => {
-    iframe.postData(arr);
+    // TODO 源头解决undefined元素
+    iframe.postData(arr.filter((item) => !!item));
   }, [arr]);
 
   const handleComponentDropEnd = (item: any, dropResult: any) => {

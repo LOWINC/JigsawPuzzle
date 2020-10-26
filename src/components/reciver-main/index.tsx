@@ -65,6 +65,7 @@ const ReciverMain: React.FC<Props> = (props) => {
               }
             >
               <div className={style["elementWrapper"]}>
+                {item.type}
                 <div className={style["item"]}>
                   <ReciverElement
                     index={index}
