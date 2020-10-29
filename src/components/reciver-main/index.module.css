@@ -1,19 +1,18 @@
 .box {
-  width: 200px;
+  width: 375px;
   min-height: 300px;
-  background-color: aliceblue;
+  background-color: #eee;
   margin-bottom: 10px;
+  min-height: 700px;
 }
 
-.element {
-  margin-bottom: 10px;
-  background-color: aquamarine;
-}
+
 
 .item {
   margin-bottom: 30px;
 }
 
 .elementWrapper {
-  background-color: red;
+  background-color: aliceblue;
+  border-bottom: 2px solid darkcyan;
 }

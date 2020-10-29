@@ -1,12 +1,14 @@
+import {Banner, Block, Line, Title} from "dd-ui";
 import React from "react";
 import {useDrop} from "react-dnd";
-import {JigsawElements} from "../../constant";
+import {JigsawComponents, JigsawElements} from "../../constant";
 import {Sort} from "../sort";
 import style from "./index.module.css";
 
 interface Props {
   value: {type: JigsawElements}[];
   index: number;
+  componentType: JigsawComponents;
   onElementMove: (params: {
     componentIndex: number;
     dragIndex: number;
@@ -62,7 +64,33 @@ const ReciverElement: React.FC<Props> = (props) => {
                   })
                 }
               >
-                {item.type}
+                {props.componentType === JigsawComponents.Title && (
+                  <Title
+                    name={`组件：${props.componentType} / 元素：${item.type}`}
+                    desc={`组件：${props.componentType} / 元素：${item.type}`}
+                  />
+                )}
+                {props.componentType === JigsawComponents.Line && (
+                  <Line
+                    name={`组件：${props.componentType} / 元素：${item.type}`}
+                    desc={`组件：${props.componentType} / 元素：${item.type}`}
+                    img='https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big'
+                  />
+                )}
+                {props.componentType === JigsawComponents.Block && (
+                  <Block
+                    name={`组件：${props.componentType} / 元素：${item.type}`}
+                    desc={`组件：${props.componentType} / 元素：${item.type}`}
+                    img='https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big'
+                  />
+                )}
+                {props.componentType === JigsawComponents.Swiper && (
+                  <Banner
+                    name={`组件：${props.componentType} / 元素：${item.type}`}
+                    desc={`组件：${props.componentType} / 元素：${item.type}`}
+                    img='https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big'
+                  />
+                )}
               </div>
             </Sort>
           ) : null

@@ -1,5 +1,5 @@
 import immer from "immer";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import Component from "../../components/component";
@@ -7,11 +7,8 @@ import Element from "../../components/element";
 import Form from "../../components/form";
 import ReciverMain from "../../components/reciver-main";
 import {JigsawComponents, JigsawElements} from "../../constant";
-import {Iframe} from "../../utils/postmessage";
 import {swap} from "../../utils/swap";
 import style from "./index.module.css";
-
-let iframe = {} as Iframe;
 
 const Jigsaw = () => {
   const [edit, setEdit] = useState(
@@ -33,15 +30,6 @@ const Jigsaw = () => {
       __key: number;
     }[]
   >([]);
-
-  useEffect(() => {
-    iframe = new Iframe("iframe");
-  }, []);
-
-  useEffect(() => {
-    // TODO 源头解决undefined元素
-    iframe.postData(arr.filter((item) => !!item));
-  }, [arr]);
 
   const handleComponentDropEnd = (item: any, dropResult: any) => {
     const newArr = immer(arr, (draft) => {
@@ -90,6 +78,13 @@ const Jigsaw = () => {
     },
     {
       Element: (
+        <Component name={JigsawComponents.Title} onEnd={handleComponentDropEnd}>
+          {JigsawComponents.Title}
+        </Component>
+      ),
+    },
+    {
+      Element: (
         <Component name={JigsawComponents.Block} onEnd={handleComponentDropEnd}>
           {JigsawComponents.Block}
         </Component>
@@ -123,6 +118,13 @@ const Jigsaw = () => {
       Element: (
         <Element name={JigsawElements.Goods} onEnd={handleElementDropEnd}>
           {JigsawElements.Goods}
+        </Element>
+      ),
+    },
+    {
+      Element: (
+        <Element name={JigsawElements.Text} onEnd={handleElementDropEnd}>
+          {JigsawElements.Text}
         </Element>
       ),
     },
@@ -202,14 +204,6 @@ const Jigsaw = () => {
                 onComponentMove={handleComponentMove}
               />
             </div>
-          </div>
-          <div className='html'>
-            <iframe
-              id='iframe'
-              className={style["iframe"]}
-              title='html'
-              src='http://localhost:10090/mobile'
-            />
           </div>
           <div className={style["form"]}>
             <Form type={edit.elementType} onConfirm={console.log}></Form>

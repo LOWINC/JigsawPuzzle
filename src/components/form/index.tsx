@@ -27,6 +27,13 @@ const Form: React.FC<Props> = (props) => {
         </div>
       );
     },
+    Text: () => {
+      return (
+        <div>
+          <input placeholder='请输入文案' type='text' className='val' />
+        </div>
+      );
+    },
   };
 
   const render = map[props.type];
@@ -37,6 +44,7 @@ const Form: React.FC<Props> = (props) => {
     <div className={style["page"]}>
       <div className='cell'>
         <input placeholder='请输入名称' type='text' className='val' />
+        <input placeholder='请输入描述' type='text' className='val' />
         <input placeholder='请输入图片' type='text' className='val' />
         <input placeholder='请输入链接' type='text' className='val' />
       </div>
