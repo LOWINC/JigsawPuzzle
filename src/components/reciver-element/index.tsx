@@ -1,8 +1,7 @@
-import {Banner, Block, Line, Title} from "dd-ui";
+import {Banner, Block, Line, Title, AppointLayout} from "dd-ui";
 import React from "react";
 import {useDrop} from "react-dnd";
 import {JigsawComponents, JigsawElements} from "../../constant";
-import RenderLayout from "../render-layout";
 import {Sort} from "../sort";
 import style from "./index.module.css";
 
@@ -47,7 +46,7 @@ const ReciverElement: React.FC<Props> = (props) => {
   return (
     <div ref={drop} className={style["component"]}>
       <div className={style["box"]}>
-        <RenderLayout componentType={props.componentType}>
+        <AppointLayout componentType={props.componentType}>
           {props.value.map((item, index) =>
             !!item ? (
               <Sort
@@ -97,7 +96,7 @@ const ReciverElement: React.FC<Props> = (props) => {
               </Sort>
             ) : null
           )}
-        </RenderLayout>
+        </AppointLayout>
       </div>
     </div>
   );
