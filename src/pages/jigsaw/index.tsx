@@ -6,7 +6,11 @@ import Component from "../../components/component";
 import Element from "../../components/element";
 import Form from "../../components/form";
 import ReciverMain from "../../components/reciver-main";
-import {JigsawComponents, JigsawElements} from "../../constant";
+import {
+  JigsawComponents,
+  JigsawComponentsRecive,
+  JigsawElements,
+} from "../../constant";
 import {swap} from "../../utils/swap";
 import style from "./index.module.css";
 
@@ -49,7 +53,20 @@ const Jigsaw = () => {
     item: {name: string; type: JigsawElements},
     result: {index: number}
   ) => {
+    const componentIype = arr[result.index].type;
+    const multiple = JigsawComponentsRecive[componentIype].multiple;
+
     const newArr = immer(arr, (draft) => {
+      if (!multiple) {
+        draft[result.index].value = [
+          {
+            ...item,
+            __key: new Date().getTime(),
+          },
+        ];
+        return draft;
+      }
+
       const oldItems = arr[result.index].value || [];
       const value = [
         ...oldItems,

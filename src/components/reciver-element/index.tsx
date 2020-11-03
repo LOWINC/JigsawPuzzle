@@ -1,7 +1,11 @@
 import {Banner, Block, Line, Title, AppointLayout} from "dd-ui";
 import React from "react";
 import {useDrop} from "react-dnd";
-import {JigsawComponents, JigsawElements} from "../../constant";
+import {
+  JigsawComponents,
+  JigsawComponentsRecive,
+  JigsawElements,
+} from "../../constant";
 import {Sort} from "../sort";
 import style from "./index.module.css";
 
@@ -22,7 +26,7 @@ interface Props {
 
 const ReciverElement: React.FC<Props> = (props) => {
   const [, drop] = useDrop({
-    accept: Object.keys(JigsawElements),
+    accept: JigsawComponentsRecive[props.componentType].elements,
     drop: () => {
       return {
         index: props.index,
