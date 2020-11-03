@@ -4,7 +4,6 @@ import {JigsawComponents, JigsawElements} from "../../constant";
 import ReciverElement from "../reciver-element";
 import {Sort} from "../sort";
 import style from "./index.module.css";
-import {Banner, Block, Line, Title, LayoutBlock} from "dd-ui";
 
 interface Props {
   value: {
