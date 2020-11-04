@@ -1,6 +1,6 @@
 import {swap} from "dd-lib";
 import immer from "immer";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import Form from "../../components/form";
@@ -10,6 +10,7 @@ import {
   JigsawComponentsRecive,
   JigsawElements,
 } from "../../constant";
+import {useCache} from "../../utils/cache";
 import style from "./index.module.css";
 import RenderJigsawComponents from "./jigsaw-components";
 import RenderJigsawElement from "./jigsaw-elements";
@@ -35,6 +36,20 @@ const Jigsaw = () => {
     }[]
   >([]);
 
+  const cache = useCache<{
+    value: {
+      type: JigsawElements;
+      __key: number;
+      [key: string]: any;
+    }[];
+    type: JigsawComponents;
+    __key: number;
+  }>(arr);
+
+  useEffect(() => {
+    setArr(cache.data);
+  }, [cache.data]);
+
   const handleComponentDropEnd = (item: any, dropResult: any) => {
     const newArr = immer(arr, (draft) => {
       return [
@@ -53,6 +68,10 @@ const Jigsaw = () => {
     item: {name: string; type: JigsawElements},
     result: {index: number}
   ) => {
+    // 如果不是被accept的元素 放下会出现 result.index === undefined
+    if (result.index === undefined) {
+      return;
+    }
     const componentIype = arr[result.index].type;
     const multiple = JigsawComponentsRecive[componentIype].multiple;
 
@@ -135,6 +154,9 @@ const Jigsaw = () => {
       <div className={style["page"]}>
         <div className={style["layout"]}>
           <div className={style["operater"]}>
+            <button className={style["reset"]} onClick={cache.clear}>
+              重置
+            </button>
             <div className={style["components"]}>
               <RenderJigsawComponents
                 handleComponentDropEnd={handleComponentDropEnd}
