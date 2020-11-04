@@ -1,9 +1,8 @@
+import {swap} from "dd-lib";
 import immer from "immer";
 import React, {useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
-import Component from "../../components/component";
-import Element from "../../components/element";
 import Form from "../../components/form";
 import ReciverMain from "../../components/reciver-main";
 import {
@@ -11,8 +10,9 @@ import {
   JigsawComponentsRecive,
   JigsawElements,
 } from "../../constant";
-import {swap} from "dd-lib";
 import style from "./index.module.css";
+import RenderJigsawComponents from "./jigsaw-components";
+import RenderJigsawElement from "./jigsaw-elements";
 
 const Jigsaw = () => {
   const [edit, setEdit] = useState(
@@ -82,71 +82,6 @@ const Jigsaw = () => {
     setArr(newArr.filter((item) => !!item));
   };
 
-  const components = [
-    {
-      Element: (
-        <Component
-          name={JigsawComponents.Swiper}
-          onEnd={handleComponentDropEnd}
-        >
-          {JigsawComponents.Swiper}
-        </Component>
-      ),
-    },
-    {
-      Element: (
-        <Component name={JigsawComponents.Title} onEnd={handleComponentDropEnd}>
-          {JigsawComponents.Title}
-        </Component>
-      ),
-    },
-    {
-      Element: (
-        <Component name={JigsawComponents.Block} onEnd={handleComponentDropEnd}>
-          {JigsawComponents.Block}
-        </Component>
-      ),
-    },
-    {
-      Element: (
-        <Component name={JigsawComponents.Line} onEnd={handleComponentDropEnd}>
-          {JigsawComponents.Line}
-        </Component>
-      ),
-    },
-  ];
-
-  const elements = [
-    {
-      Element: (
-        <Element name={JigsawElements.Banner} onEnd={handleElementDropEnd}>
-          {JigsawElements.Banner}
-        </Element>
-      ),
-    },
-    {
-      Element: (
-        <Element name={JigsawElements.Card} onEnd={handleElementDropEnd}>
-          {JigsawElements.Card}
-        </Element>
-      ),
-    },
-    {
-      Element: (
-        <Element name={JigsawElements.Goods} onEnd={handleElementDropEnd}>
-          {JigsawElements.Goods}
-        </Element>
-      ),
-    },
-    {
-      Element: (
-        <Element name={JigsawElements.Text} onEnd={handleElementDropEnd}>
-          {JigsawElements.Text}
-        </Element>
-      ),
-    },
-  ];
-
   const handleElementSelect = (params: {
     elementIndex: number;
     elementType: JigsawElements;
@@ -201,14 +136,14 @@ const Jigsaw = () => {
         <div className={style["layout"]}>
           <div className={style["operater"]}>
             <div className={style["components"]}>
-              {components.map((item, index) => (
-                <div key={index}>{item.Element}</div>
-              ))}
+              <RenderJigsawComponents
+                handleComponentDropEnd={handleComponentDropEnd}
+              />
             </div>
             <div className={style["elements"]}>
-              {elements.map((item, index) => (
-                <div key={index}>{item.Element}</div>
-              ))}
+              <RenderJigsawElement
+                handleElementDropEnd={handleElementDropEnd}
+              />
             </div>
           </div>
 
