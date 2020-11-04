@@ -11,7 +11,7 @@ import {
   JigsawComponentsRecive,
   JigsawElements,
 } from "../../constant";
-import {swap} from "../../utils/swap";
+import {swap} from "dd-lib";
 import style from "./index.module.css";
 
 const Jigsaw = () => {

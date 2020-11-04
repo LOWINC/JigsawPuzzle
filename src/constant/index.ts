@@ -1,18 +1,7 @@
-// 组件
-export enum JigsawComponents {
-  Swiper = "Swiper",
-  Block = "Block",
-  Line = "Line",
-  Title = "Title",
-}
+import {JigsawComponents, JigsawElements} from "dd-lib";
 
-// 元素
-export enum JigsawElements {
-  Goods = "Goods",
-  Card = "Card",
-  Banner = "Banner",
-  Text = "Text",
-}
+// 组件 元素
+export {JigsawComponents, JigsawElements};
 
 // 组件接受的元素
 export const JigsawComponentsRecive = {
