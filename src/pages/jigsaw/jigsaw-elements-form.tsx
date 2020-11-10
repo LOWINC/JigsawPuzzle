@@ -1,11 +1,16 @@
-import {JigsawElements, JigsawElementsConfig, JigsawElementsForm} from "dd-lib";
+import {
+  JigsawElementBase,
+  JigsawElements,
+  JigsawElementsConfig,
+  JigsawElementsForm,
+} from "dd-lib";
 import React from "react";
 import FormBanner from "../../components/form/banner";
 
 interface Props {
   type: JigsawElements;
-  data: JigsawElementsForm[JigsawElements];
-  onSubmit: (form: JigsawElementsForm[JigsawElements]) => any;
+  data: JigsawElementsForm;
+  onSubmit: (form: JigsawElementsForm) => any;
 }
 
 const JigsawElementForm: React.FC<Props> = ({data, type, onSubmit}) => {

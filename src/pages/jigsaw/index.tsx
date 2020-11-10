@@ -1,15 +1,11 @@
-import {swap} from "dd-lib";
+import {JigsawElementBase, JigsawElementsForm, swap} from "dd-lib";
 import immer from "immer";
-import {get} from "lodash";
+import get from "lodash/get";
 import React, {useEffect, useMemo, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import ReciverMain from "../../components/reciver-main";
-import {
-  JigsawComponents,
-  JigsawComponentsRecive,
-  JigsawElements,
-} from "../../constant";
+import {JigsawComponentsRecive, JigsawElements} from "../../constant";
 import {useCache} from "../../utils/cache";
 import style from "./index.module.css";
 import RenderJigsawComponents from "./jigsaw-components";
@@ -17,17 +13,7 @@ import RenderJigsawElement from "./jigsaw-elements";
 import JigsawElementForm from "./jigsaw-elements-form";
 
 const Jigsaw = () => {
-  const [arr, setArr] = useState<
-    {
-      value: {
-        type: JigsawElements;
-        __key: number;
-        [key: string]: any;
-      }[];
-      type: JigsawComponents;
-      __key: number;
-    }[]
-  >([]);
+  const [arr, setArr] = useState<JigsawElementBase[]>([]);
 
   const [edit, setEdit] = useState(
     {} as {
@@ -45,15 +31,7 @@ const Jigsaw = () => {
     );
   }, [arr, edit.componentIndex, edit.elementIndex]);
 
-  const cache = useCache<{
-    value: {
-      type: JigsawElements;
-      __key: number;
-      [key: string]: any;
-    }[];
-    type: JigsawComponents;
-    __key: number;
-  }>(arr);
+  const cache = useCache<JigsawElementBase>(arr);
 
   useEffect(() => {
     setArr(cache.data);
@@ -90,6 +68,7 @@ const Jigsaw = () => {
           {
             ...item,
             __key: new Date().getTime(),
+            value: [],
           },
         ];
         return draft;
@@ -101,6 +80,7 @@ const Jigsaw = () => {
         {
           ...item,
           __key: new Date().getTime(),
+          value: [],
         },
       ];
       draft[result.index].value = value;
@@ -156,7 +136,7 @@ const Jigsaw = () => {
     );
   };
 
-  const handleSubmitElementValue = (form: any) => {
+  const handleSubmitElementValue = (form: JigsawElementsForm) => {
     setArr(
       immer(arr, (draft) => {
         draft[edit.componentIndex].value[edit.elementIndex].value = form;

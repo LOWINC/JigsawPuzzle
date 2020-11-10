@@ -1,3 +1,4 @@
+import {JigsawElementBase} from "dd-lib";
 import React from "react";
 import {useDrop} from "react-dnd";
 import {JigsawComponents, JigsawElements} from "../../constant";
@@ -6,15 +7,7 @@ import {Sort} from "../sort";
 import style from "./index.module.css";
 
 interface Props {
-  value: {
-    type: JigsawComponents;
-    __key: number;
-    value: {
-      type: JigsawElements;
-      __key: number;
-      [key: string]: any;
-    }[];
-  }[];
+  value: JigsawElementBase[];
   onElementMove: (params: {
     componentIndex: number;
     dragIndex: number;
