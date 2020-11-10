@@ -1,4 +1,5 @@
-import {Banner, Block, Line, Title, AppointLayout} from "dd-ui";
+import {AppointLayout, Banner, Block, Line, Title} from "dd-ui";
+import get from "lodash/get";
 import React from "react";
 import {useDrop} from "react-dnd";
 import {
@@ -71,30 +72,30 @@ const ReciverElement: React.FC<Props> = (props) => {
                 >
                   {props.componentType === JigsawComponents.Title && (
                     <Title
-                      name={`组件：${props.componentType} / 元素：${item.type}`}
-                      desc={`组件：${props.componentType} / 元素：${item.type}`}
+                      name={get(
+                        props.value[index],
+                        "value.title",
+                        "请输入标题"
+                      )}
+                      desc={get(props.value[index], "value.desc")}
                     />
                   )}
                   {props.componentType === JigsawComponents.Line && (
                     <Line
-                      name={`组件：${props.componentType} / 元素：${item.type}`}
-                      desc={`组件：${props.componentType} / 元素：${item.type}`}
-                      img='https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big'
+                      name={get(props.value[index], "value.title")}
+                      desc={get(props.value[index], "value.desc")}
+                      img={get(props.value[index], "value.img")}
                     />
                   )}
                   {props.componentType === JigsawComponents.Block && (
                     <Block
-                      name={`组件：${props.componentType} / 元素：${item.type}`}
-                      desc={`组件：${props.componentType} / 元素：${item.type}`}
-                      img='https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big'
+                      name={get(props.value[index], "value.title")}
+                      desc={get(props.value[index], "value.desc")}
+                      img={get(props.value[index], "value.img")}
                     />
                   )}
                   {props.componentType === JigsawComponents.Swiper && (
-                    <Banner
-                      name={`组件：${props.componentType} / 元素：${item.type}`}
-                      desc={`组件：${props.componentType} / 元素：${item.type}`}
-                      img='https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big'
-                    />
+                    <Banner img={get(props.value[index], "value.img")} />
                   )}
                 </div>
               </Sort>
