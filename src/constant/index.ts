@@ -7,7 +7,7 @@ export {JigsawComponents, JigsawElements};
 export const JigsawComponentsRecive = {
   [JigsawComponents.Swiper]: {
     multiple: true,
-    elements: [JigsawElements.Banner, JigsawElements.Card],
+    elements: [JigsawElements.Card],
   },
   [JigsawComponents.Block]: {
     multiple: true,
@@ -15,7 +15,7 @@ export const JigsawComponentsRecive = {
   },
   [JigsawComponents.Line]: {
     multiple: true,
-    elements: [JigsawElements.Goods],
+    elements: [JigsawElements.Goods, JigsawElements.Banner],
   },
   [JigsawComponents.Title]: {
     multiple: false,

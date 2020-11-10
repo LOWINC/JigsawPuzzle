@@ -1,9 +1,9 @@
 import {swap} from "dd-lib";
 import immer from "immer";
-import React, {useEffect, useState} from "react";
+import {get} from "lodash";
+import React, {useEffect, useMemo, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
-import Form from "../../components/form";
 import ReciverMain from "../../components/reciver-main";
 import {
   JigsawComponents,
@@ -14,16 +14,9 @@ import {useCache} from "../../utils/cache";
 import style from "./index.module.css";
 import RenderJigsawComponents from "./jigsaw-components";
 import RenderJigsawElement from "./jigsaw-elements";
+import JigsawElementForm from "./jigsaw-elements-form";
 
 const Jigsaw = () => {
-  const [edit, setEdit] = useState(
-    {} as {
-      elementIndex: number;
-      componentIndex: number;
-      elementType: JigsawElements;
-    }
-  );
-
   const [arr, setArr] = useState<
     {
       value: {
@@ -35,6 +28,22 @@ const Jigsaw = () => {
       __key: number;
     }[]
   >([]);
+
+  const [edit, setEdit] = useState(
+    {} as {
+      elementIndex: number;
+      componentIndex: number;
+      elementType: JigsawElements;
+    }
+  );
+
+  const editData = useMemo(() => {
+    return get(
+      arr[edit.componentIndex],
+      `value[${edit.elementIndex}].value`,
+      {}
+    );
+  }, [arr, edit.componentIndex, edit.elementIndex]);
 
   const cache = useCache<{
     value: {
@@ -111,8 +120,6 @@ const Jigsaw = () => {
       elementIndex: params.elementIndex,
       elementType: params.elementType,
     });
-
-    console.log(params);
   };
 
   const handleComponentMove = (params: {
@@ -149,6 +156,14 @@ const Jigsaw = () => {
     );
   };
 
+  const handleSubmitElementValue = (form: any) => {
+    setArr(
+      immer(arr, (draft) => {
+        draft[edit.componentIndex].value[edit.elementIndex].value = form;
+      })
+    );
+  };
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div className={style["page"]}>
@@ -180,7 +195,11 @@ const Jigsaw = () => {
             </div>
           </div>
           <div className={style["form"]}>
-            <Form type={edit.elementType} onConfirm={console.log}></Form>
+            <JigsawElementForm
+              data={editData}
+              type={edit.elementType}
+              onSubmit={handleSubmitElementValue}
+            />
           </div>
         </div>
       </div>
