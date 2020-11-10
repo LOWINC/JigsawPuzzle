@@ -1,13 +1,13 @@
 import {JigsawElementsFormType} from "dd-lib";
-import React, {useEffect, useState} from "react";
+import React, {useState, useEffect} from "react";
 import style from "./index.module.css";
 
 interface Props {
-  data: JigsawElementsFormType["BannerForm"];
-  onSubmit: (data: JigsawElementsFormType["BannerForm"]) => any;
+  data: JigsawElementsFormType["CardForm"];
+  onSubmit: (data: JigsawElementsFormType["CardForm"]) => any;
 }
 
-const FormBanner: React.FC<Props> = (props) => {
+const FormCard: React.FC<Props> = (props) => {
   const [form, setForm] = useState(props.data);
 
   useEffect(() => {
@@ -27,6 +27,16 @@ const FormBanner: React.FC<Props> = (props) => {
 
   return (
     <div className='form'>
+      <div className={style["form-cell"]}>
+        <div className={style["form-label"]}>标题</div>
+        <input
+          type='text'
+          className={style["form-value"]}
+          value={form.vipCardId}
+          placeholder='请输入会员卡id'
+          onChange={handleChange("vipCardId")}
+        />
+      </div>
       <div className={style["form-cell"]}>
         <div className={style["form-label"]}>标题</div>
         <input
@@ -75,4 +85,4 @@ const FormBanner: React.FC<Props> = (props) => {
   );
 };
 
-export default FormBanner;
+export default FormCard;

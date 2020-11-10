@@ -1,13 +1,13 @@
 import {JigsawElementsFormType} from "dd-lib";
-import React, {useEffect, useState} from "react";
+import React, {useState, useEffect} from "react";
 import style from "./index.module.css";
 
 interface Props {
-  data: JigsawElementsFormType["BannerForm"];
-  onSubmit: (data: JigsawElementsFormType["BannerForm"]) => any;
+  data: JigsawElementsFormType["TextForm"];
+  onSubmit: (data: JigsawElementsFormType["TextForm"]) => any;
 }
 
-const FormBanner: React.FC<Props> = (props) => {
+const FormText: React.FC<Props> = (props) => {
   const [form, setForm] = useState(props.data);
 
   useEffect(() => {
@@ -47,27 +47,6 @@ const FormBanner: React.FC<Props> = (props) => {
           onChange={handleChange("desc")}
         />
       </div>
-      <div className={style["form-cell"]}>
-        <div className={style["form-label"]}>图片</div>
-        <input
-          type='text'
-          className={style["form-value"]}
-          value={form.img}
-          placeholder='请输入图片'
-          onChange={handleChange("img")}
-        />
-      </div>
-      <div className={style["form-cell"]}>
-        <div className={style["form-label"]}>链接</div>
-        <input
-          type='text'
-          className={style["form-value"]}
-          value={form.link}
-          placeholder='请输入链接'
-          onChange={handleChange("link")}
-        />
-      </div>
-
       <button className={style["submit"]} onClick={handleSubmit}>
         确定
       </button>
@@ -75,4 +54,4 @@ const FormBanner: React.FC<Props> = (props) => {
   );
 };
 
-export default FormBanner;
+export default FormText;
