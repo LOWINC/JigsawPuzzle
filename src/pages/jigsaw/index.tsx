@@ -7,10 +7,13 @@ import {HTML5Backend} from "react-dnd-html5-backend";
 import ReciverMain from "../../components/reciver-main";
 import {JigsawComponentsRecive, JigsawElements} from "../../constant";
 import {useCache} from "../../utils/cache";
+import {Iframe} from "../../utils/postmessage";
 import style from "./index.module.css";
 import RenderJigsawComponents from "./jigsaw-components";
 import RenderJigsawElement from "./jigsaw-elements";
 import JigsawElementForm from "./jigsaw-elements-form";
+
+const iframe = new Iframe();
 
 const Jigsaw = () => {
   const [arr, setArr] = useState<JigsawElementBase[]>([]);
@@ -36,6 +39,14 @@ const Jigsaw = () => {
   useEffect(() => {
     setArr(cache.data);
   }, [cache.data]);
+
+  useEffect(() => {
+    iframe.find("livePage");
+  }, []);
+
+  useEffect(() => {
+    iframe.postData(arr);
+  }, [arr]);
 
   const handleComponentDropEnd = (item: any, dropResult: any) => {
     const newArr = immer(arr, (draft) => {
@@ -179,6 +190,14 @@ const Jigsaw = () => {
               data={editData}
               type={edit.elementType}
               onSubmit={handleSubmitElementValue}
+            />
+          </div>
+          <div className={style["livePage"]}>
+            <iframe
+              id='livePage'
+              src='http://localhost:10090/mobile'
+              title='livePage'
+              className={style["iframe"]}
             />
           </div>
         </div>
