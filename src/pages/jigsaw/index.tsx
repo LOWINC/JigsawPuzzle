@@ -195,7 +195,7 @@ const Jigsaw = () => {
           <div className={style["livePage"]}>
             <iframe
               id='livePage'
-              src='http://localhost:10090/mobile'
+              src='https://lowinc.github.io/mobile/index.html'
               title='livePage'
               className={style["iframe"]}
             />
