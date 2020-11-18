@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
 import {useDrag, useDrop} from "react-dnd";
-import {JigsawComponents, JigsawElements} from "../../constant";
+import {JigsawComponents, JigsawElements} from "../../setup";
 import style from "./index.module.css";
 
 export const Sort: React.FC<{

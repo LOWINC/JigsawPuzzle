@@ -1,4 +1,8 @@
 import {JigsawComponents, JigsawElements} from "dd-lib";
+import FormBanner from "../components/form/banner";
+import FormCard from "../components/form/card";
+import FormGoods from "../components/form/goods";
+import FormText from "../components/form/text";
 
 // 组件 元素
 export {JigsawComponents, JigsawElements};
@@ -42,5 +46,26 @@ export const JigsawComponentsRecive: Record<
   [JigsawComponents.CubeRow4]: {
     elements: [JigsawElements.Goods, JigsawElements.Banner],
     multiple: true,
+  },
+};
+
+// 元素对应的表单
+export const JigsawElementsFormConfig: Record<
+  JigsawElements,
+  {
+    Form: any; // TODO: 元素的ts定义？
+  }
+> = {
+  Banner: {
+    Form: FormBanner,
+  },
+  Card: {
+    Form: FormCard,
+  },
+  Goods: {
+    Form: FormGoods,
+  },
+  Text: {
+    Form: FormText,
   },
 };

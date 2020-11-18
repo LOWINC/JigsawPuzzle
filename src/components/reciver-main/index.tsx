@@ -1,7 +1,7 @@
 import {JigsawElementBase} from "dd-lib";
 import React from "react";
 import {useDrop} from "react-dnd";
-import {JigsawComponents, JigsawElements} from "../../constant";
+import {JigsawComponents, JigsawElements} from "../../setup";
 import ReciverElement from "../reciver-element";
 import {Sort} from "../sort";
 import style from "./index.module.css";

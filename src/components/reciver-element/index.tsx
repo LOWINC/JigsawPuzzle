@@ -15,7 +15,7 @@ import {
   JigsawComponents,
   JigsawComponentsRecive,
   JigsawElements,
-} from "../../constant";
+} from "../../setup";
 import {Sort} from "../sort";
 import style from "./index.module.css";
 

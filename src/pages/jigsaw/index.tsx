@@ -5,14 +5,14 @@ import React, {useEffect, useMemo, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import ReciverMain from "../../components/reciver-main";
-import {JigsawComponentsRecive, JigsawElements} from "../../constant";
-import {mockData} from "../../constant/data";
+import {JigsawComponentsRecive, JigsawElements} from "../../setup";
+import {mockData} from "../../setup/data";
 import {useCache} from "../../utils/cache";
 import {Iframe} from "../../utils/postmessage";
+import RenderJigsawComponents from "./components/jigsaw-components";
+import RenderJigsawElement from "./components/jigsaw-elements";
+import JigsawElementForm from "./components/jigsaw-elements-form";
 import style from "./index.module.css";
-import RenderJigsawComponents from "./jigsaw-components";
-import RenderJigsawElement from "./jigsaw-elements";
-import JigsawElementForm from "./jigsaw-elements-form";
 
 const iframe = new Iframe();
 
