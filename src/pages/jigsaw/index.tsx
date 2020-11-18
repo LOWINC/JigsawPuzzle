@@ -6,6 +6,7 @@ import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import ReciverMain from "../../components/reciver-main";
 import {JigsawComponentsRecive, JigsawElements} from "../../constant";
+import {mockData} from "../../constant/data";
 import {useCache} from "../../utils/cache";
 import {Iframe} from "../../utils/postmessage";
 import style from "./index.module.css";
@@ -160,10 +161,19 @@ const Jigsaw = () => {
       <div className={style["page"]}>
         <div className={style["layout"]}>
           <div className={style["operater"]}>
-            <div>操作</div>
-            <button className={style["reset"]} onClick={cache.clear}>
-              重置
-            </button>
+            <div>
+              <button className={style["reset"]} onClick={cache.clear}>
+                重置
+              </button>
+            </div>
+            <div>
+              <button
+                className={style["reset"]}
+                onClick={() => setArr(mockData as any)}
+              >
+                使用测试数据
+              </button>
+            </div>
             <div className={style["components"]}>
               <RenderJigsawComponents
                 handleComponentDropEnd={handleComponentDropEnd}
@@ -198,8 +208,8 @@ const Jigsaw = () => {
             <div>预览</div>
             <iframe
               id='livePage'
-              src='http://localhost:10090/mobile'
-              // src='https://lowinc.github.io/mobile/index.html'
+              // src='http://localhost:10090/mobile'
+              src='https://lowinc.github.io/mobile/index.html'
               title='livePage'
               className={style["iframe"]}
             />
