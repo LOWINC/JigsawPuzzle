@@ -4,7 +4,13 @@ import {JigsawComponents, JigsawElements} from "dd-lib";
 export {JigsawComponents, JigsawElements};
 
 // 组件接受的元素
-export const JigsawComponentsRecive = {
+export const JigsawComponentsRecive: Record<
+  JigsawComponents,
+  {
+    multiple: boolean;
+    elements: JigsawElements[];
+  }
+> = {
   [JigsawComponents.Swiper]: {
     multiple: true,
     elements: [JigsawElements.Card],
@@ -20,5 +26,21 @@ export const JigsawComponentsRecive = {
   [JigsawComponents.Title]: {
     multiple: false,
     elements: [JigsawElements.Text],
+  },
+  [JigsawComponents.Big]: {
+    elements: [JigsawElements.Goods, JigsawElements.Banner],
+    multiple: true,
+  },
+  [JigsawComponents.Roll]: {
+    elements: [JigsawElements.Goods, JigsawElements.Banner],
+    multiple: true,
+  },
+  [JigsawComponents.Cube]: {
+    elements: [JigsawElements.Goods, JigsawElements.Banner],
+    multiple: true,
+  },
+  [JigsawComponents.CubeRow4]: {
+    elements: [JigsawElements.Goods, JigsawElements.Banner],
+    multiple: true,
   },
 };

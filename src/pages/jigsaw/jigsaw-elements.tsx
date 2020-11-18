@@ -1,4 +1,4 @@
-import {JigsawElements} from "dd-lib";
+import {JigsawElements, JigsawElementsName} from "dd-lib";
 import React from "react";
 import Element from "../../components/element";
 
@@ -11,28 +11,28 @@ const RenderJigsawElement: React.FC<Props> = ({handleElementDropEnd}) => {
     {
       Element: (
         <Element name={JigsawElements.Banner} onEnd={handleElementDropEnd}>
-          {JigsawElements.Banner}
+          {JigsawElementsName[JigsawElements.Banner]}
         </Element>
       ),
     },
     {
       Element: (
         <Element name={JigsawElements.Card} onEnd={handleElementDropEnd}>
-          {JigsawElements.Card}
+          {JigsawElementsName[JigsawElements.Card]}
         </Element>
       ),
     },
     {
       Element: (
         <Element name={JigsawElements.Goods} onEnd={handleElementDropEnd}>
-          {JigsawElements.Goods}
+          {JigsawElementsName[JigsawElements.Goods]}
         </Element>
       ),
     },
     {
       Element: (
         <Element name={JigsawElements.Text} onEnd={handleElementDropEnd}>
-          {JigsawElements.Text}
+          {JigsawElementsName[JigsawElements.Text]}
         </Element>
       ),
     },
@@ -40,6 +40,7 @@ const RenderJigsawElement: React.FC<Props> = ({handleElementDropEnd}) => {
 
   return (
     <div>
+      <div className='title'>元素</div>
       {elements.map((item, index) => (
         <div key={index}>{item.Element}</div>
       ))}

@@ -1,4 +1,13 @@
-import {AppointLayout, Banner, Block, Line, Title} from "dd-ui";
+import {
+  AppointLayout,
+  Banner,
+  Block,
+  Line,
+  Title,
+  Big,
+  Cube,
+  Roll,
+} from "dd-ui";
 import get from "lodash/get";
 import React from "react";
 import {useDrop} from "react-dnd";
@@ -70,6 +79,29 @@ const ReciverElement: React.FC<Props> = (props) => {
                     })
                   }
                 >
+                  {props.componentType === JigsawComponents.Roll && (
+                    <Roll
+                      name={get(props.value[index], "value.title")}
+                      desc={get(props.value[index], "value.desc")}
+                      img={get(props.value[index], "value.img")}
+                    />
+                  )}
+
+                  {props.componentType === JigsawComponents.Big && (
+                    <Big
+                      name={get(props.value[index], "value.title")}
+                      desc={get(props.value[index], "value.desc")}
+                      img={get(props.value[index], "value.img")}
+                    />
+                  )}
+
+                  {props.componentType === JigsawComponents.Cube && (
+                    <Cube img={get(props.value[index], "value.img")} />
+                  )}
+                  {props.componentType === JigsawComponents.CubeRow4 && (
+                    <Cube img={get(props.value[index], "value.img")} />
+                  )}
+
                   {props.componentType === JigsawComponents.Title && (
                     <Title
                       name={get(
