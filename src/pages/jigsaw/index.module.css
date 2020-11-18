@@ -1,6 +1,5 @@
 .layout {
   display: flex;
-
 }
 
 .form,
@@ -11,6 +10,31 @@
   border: 1px solid darkcyan;
 }
 
+.operater {
+  position: fixed;
+  left: 50px;
+  top: 50px;
+  z-index: 10;
+}
+
+.preview {
+  margin-left: 500px;
+}
+
+.form {
+  position: fixed;
+  right: 500px;
+  top: 50px;
+  z-index: 10;
+  width: 600px;
+}
+
+.livePage {
+  position: fixed;
+  right: 10px;
+  top: 50px;
+  z-index: 10;
+}
 
 .components {
   margin-bottom: 10px;
@@ -26,7 +50,6 @@
   height: 667px;
   border: 1px solid darkcyan;
 }
-
 
 .reset {
   width: 200px;

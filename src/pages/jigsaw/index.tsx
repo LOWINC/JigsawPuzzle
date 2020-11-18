@@ -160,6 +160,7 @@ const Jigsaw = () => {
       <div className={style["page"]}>
         <div className={style["layout"]}>
           <div className={style["operater"]}>
+            <div>操作</div>
             <button className={style["reset"]} onClick={cache.clear}>
               重置
             </button>
@@ -186,6 +187,7 @@ const Jigsaw = () => {
             </div>
           </div>
           <div className={style["form"]}>
+            <div>内容</div>
             <JigsawElementForm
               data={editData}
               type={edit.elementType}
@@ -193,9 +195,11 @@ const Jigsaw = () => {
             />
           </div>
           <div className={style["livePage"]}>
+            <div>预览</div>
             <iframe
               id='livePage'
-              src='https://lowinc.github.io/mobile/index.html'
+              src='http://localhost:10090/mobile'
+              // src='https://lowinc.github.io/mobile/index.html'
               title='livePage'
               className={style["iframe"]}
             />
