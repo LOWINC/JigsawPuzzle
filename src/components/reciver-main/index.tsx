@@ -1,4 +1,4 @@
-import {JigsawElementBase} from "dd-lib";
+import {JigsawElementBase} from "@lowinc/jigsawpuzzle-lib";
 import React from "react";
 import {useDrop} from "react-dnd";
 import {JigsawComponents, JigsawElements} from "../../setup";

@@ -1,4 +1,4 @@
-import {JigsawElements, JigsawElementsForm} from "dd-lib";
+import {JigsawElements, JigsawElementsForm} from "@lowinc/jigsawpuzzle-lib";
 import React from "react";
 import {JigsawElementsFormConfig} from "../../../setup";
 

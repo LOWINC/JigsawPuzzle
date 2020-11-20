@@ -7,7 +7,7 @@ import {
   Big,
   Cube,
   Roll,
-} from "dd-ui";
+} from "@lowinc/jigsawpuzzle-ui";
 import get from "lodash/get";
 import React from "react";
 import {useDrop} from "react-dnd";

@@ -1,4 +1,8 @@
-import {JigsawElementBase, JigsawElementsForm, swap} from "dd-lib";
+import {
+  JigsawElementBase,
+  JigsawElementsForm,
+  swap,
+} from "@lowinc/jigsawpuzzle-lib";
 import immer from "immer";
 import get from "lodash/get";
 import React, {useEffect, useMemo, useState} from "react";

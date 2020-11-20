@@ -1,4 +1,4 @@
-import {JigsawElementsFormType} from "dd-lib";
+import {JigsawElementsFormType} from "@lowinc/jigsawpuzzle-lib";
 import React, {useState, useEffect} from "react";
 import style from "./index.module.css";
 

@@ -1,4 +1,4 @@
-import {JigsawComponents, JigsawElements} from "dd-lib";
+import {JigsawComponents, JigsawElements} from "@lowinc/jigsawpuzzle-lib";
 import FormBanner from "../components/form/banner";
 import FormCard from "../components/form/card";
 import FormGoods from "../components/form/goods";
