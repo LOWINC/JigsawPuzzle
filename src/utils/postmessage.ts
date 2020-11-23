@@ -1,16 +1,26 @@
 export class Iframe {
   private iframe!: any;
+  private iframeId!: string;
 
   private postMessage = (action: {type: string; payload: any}) => {
-    if (this.iframe) {
-      this.iframe.contentWindow.postMessage(action, "*");
+    if (!this.iframe) {
+      console.error("没有找到iframe");
       return;
     }
-    console.error("没有找到iframe");
+    this.iframe.contentWindow.postMessage(action, "*");
   };
 
+  isFind = (id: string) => id === this.iframeId;
+
   find = (id: string) => {
-    this.iframe = document.getElementById(id);
+    const dom = document.getElementById(id);
+    if (!dom) {
+      console.error("没有找到iframe");
+      return;
+    }
+
+    this.iframeId = id;
+    this.iframe = dom;
   };
 
   postData = (payload: any) => {

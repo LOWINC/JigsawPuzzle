@@ -46,11 +46,15 @@ const Jigsaw = () => {
   }, [cache.data]);
 
   useEffect(() => {
-    iframe.find("livePage");
-  }, []);
+    if (iframe.isFind("livePage")) {
+      iframe.postData(arr);
+      return;
+    }
 
-  useEffect(() => {
-    iframe.postData(arr);
+    setTimeout(() => {
+      iframe.find("livePage");
+      iframe.postData(arr);
+    }, 300);
   }, [arr]);
 
   const handleComponentDropEnd = (item: any, dropResult: any) => {
