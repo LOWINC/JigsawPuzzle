@@ -9,8 +9,12 @@ export const mockData = [
         type: "Goods",
         __key: 1605682433632,
         value: {
+          goodsId: "12121212121212",
           img:
-            "https://interest-image-dev.billbear.cn/dev/BUYCARD/vLOg2vQUW7utzimOJDVY75y13ZpDPz0vAMUSXqaB62s=@big",
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+          desc: "老司机の免费领取商品の简介",
+          link: "https://baidu.com?userId=${thirdUserId}",
+          title: "标题奥术大多",
         },
       },
     ],
@@ -60,6 +64,10 @@ export const mockData = [
         value: {
           img:
             "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+          title: "LOWINC",
+          desc: "老司机の免费领取商品の简介",
+          goodsId: "12121212121212",
+          link: "https://www.dota2.com.cn/index.htm",
         },
       },
       {
@@ -70,8 +78,11 @@ export const mockData = [
         value: {
           img:
             "https://interest-image-dev.billbear.cn/dev/GOODS/A94YWU34mDq9oQ7cGL4aAsc1bJwIa1KUWMvfCncI2qQ=@big",
-          desc: "121212",
-          title: "1212",
+          desc: "每月2次222",
+          title: "标题奥术大多111",
+          goodsId: "11212",
+          link:
+            "https://qy-h5-dev.billbear.cn/#/pages/goodsList/resource?typeName=优惠门票key=leyuanshouye",
         },
       },
       {
@@ -81,8 +92,10 @@ export const mockData = [
         value: {
           img:
             "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
-          desc: "1212",
-          title: "1212",
+          desc: "老司机の随机优惠券の简介",
+          title: "标题奥术大多111",
+          goodsId: "12121212121212",
+          link: "https://www.dota2.com.cn/index.htm",
         },
       },
       {
@@ -91,7 +104,11 @@ export const mockData = [
         __key: 1605682370074,
         value: {
           img:
-            "https://interest-image-dev.billbear.cn/dev/GOODS/A94YWU34mDq9oQ7cGL4aAsc1bJwIa1KUWMvfCncI2qQ=@big",
+            "https://interest-image-dev.billbear.cn/dev/BUYCARD/FkKMpwheyHU-XlaVjm0M2eCOibgrlaBmW1s0Nq7k8Qk=@big",
+          goodsId: "11212",
+          title: "LOWINC222",
+          desc: "老司机の随机优惠券の简介",
+          link: "https://www.dota2.com.cn/index.htm",
         },
       },
       {
@@ -102,6 +119,72 @@ export const mockData = [
         value: {
           img:
             "https://interest-image-dev.billbear.cn/dev/BUYCARD/vLOg2vQUW7utzimOJDVY75y13ZpDPz0vAMUSXqaB62s=@big",
+        },
+      },
+    ],
+  },
+  {
+    name: "CubeRow4",
+    type: "CubeRow4",
+    index: 5,
+    __key: 1605686443666,
+    value: [
+      {
+        name: "Goods",
+        type: "Goods",
+        index: 1,
+        __key: 1606116876906,
+        value: {
+          goodsId: "12121212121212",
+          img:
+            "https://pic4.zhimg.com/80/v2-b9a5594145737b5c42e9f08ac2d6a6ef_1440w.jpg",
+          desc: "老司机の全部优惠券の简介",
+          link: "https://baidu.com?userId=${thirdUserId}",
+          title: "12121",
+        },
+      },
+      {
+        name: "Goods",
+        type: "Goods",
+        index: 2,
+        __key: 1606116971284,
+        value: {
+          goodsId: "12121212121212",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/BUYCARD/FkKMpwheyHU-XlaVjm0M2eCOibgrlaBmW1s0Nq7k8Qk=@big",
+          desc: "老司机の随机优惠券の简介",
+          link:
+            "https://qy-h5-dev.billbear.cn/#/pages/goodsList/resource?typeName=优惠门票key=leyuanshouye",
+          title: "标题",
+        },
+      },
+      {
+        name: "Goods",
+        type: "Goods",
+        index: 0,
+        __key: 1606114688751,
+        value: {
+          goodsId: "12121212121212",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+          desc: "老司机の随机优惠券の简介",
+          link: "https://www.dota2.com.cn/index.htm",
+          title: "标题奥术大多",
+        },
+      },
+      {
+        name: "Goods",
+        type: "Goods",
+        index: 0,
+        __key: 1605686445875,
+        value: {
+          goodsId: "12121212121212",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/BUYCARD/FkKMpwheyHU-XlaVjm0M2eCOibgrlaBmW1s0Nq7k8Qk=@big",
+          desc: "老司机の全部优惠券の简介",
+          link:
+            "https://qy-h5-dev.billbear.cn/#/pages/goodsList/resource?typeName=优惠门票key=leyuanshouye",
+          title: "标题奥术大多",
         },
       },
     ],
@@ -129,15 +212,6 @@ export const mockData = [
     ],
   },
   {
-    name: "CubeRow4",
-    type: "CubeRow4",
-    index: 5,
-    __key: 1605686443666,
-    value: [
-      {name: "Goods", type: "Goods", index: 0, __key: 1605686445875, value: []},
-    ],
-  },
-  {
     name: "Block",
     type: "Block",
     index: 2,
@@ -149,12 +223,14 @@ export const mockData = [
         index: 0,
         __key: 1605682549818,
         value: {
+          goodsId: "1212",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/BUYCARD/vLOg2vQUW7utzimOJDVY75y13ZpDPz0vAMUSXqaB62s=@big",
           desc:
             "https://interest-image-dev.billbear.cn/dev/BUYCARD/FkKMpwheyHU-XlaVjm0M2eCOibgrlaBmW1s0Nq7k8Qk=@big",
-          img:
-            "https://interest-image-dev.billbear.cn/dev/BUYCARD/FkKMpwheyHU-XlaVjm0M2eCOibgrlaBmW1s0Nq7k8Qk=@big",
-          title: "1212",
-          goodsId: "1212",
+          link:
+            "https://qy-h5-dev.billbear.cn/#/pages/goodsList/resource?typeName=优惠门票key=leyuanshouye",
+          title: "标题奥术大多",
         },
       },
       {
@@ -167,6 +243,7 @@ export const mockData = [
             "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
           desc: "asdadadadsdas",
           title: "121212121212",
+          goodsId: "1111111",
         },
       },
     ],
