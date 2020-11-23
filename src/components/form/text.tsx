@@ -45,9 +45,7 @@ const FormText: React.FC<Props> = (props) => {
           <FormItem name='desc' label='描述'>
             <Input name='desc' placeholder='请输入描述' />
           </FormItem>
-          <SubmitButton type='primary' htmlType='submit'>
-            确定
-          </SubmitButton>
+          <SubmitButton loading={false}>确定</SubmitButton>
         </Form>
       </Formik>
     </Card>

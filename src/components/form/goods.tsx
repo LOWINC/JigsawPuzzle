@@ -33,7 +33,7 @@ const FormGoods: React.FC<Props> = (props) => {
     <Card>
       <Formik
         validationSchema={yup.object({
-          goodsId: yup.string().required("请输入商品id"),
+          goodsId: yup.string().required("请输入商品"),
           title: yup.string().required("请输入标题"),
           desc: yup.string().required("请输入描述"),
           img: yup.string().required("请输入图片"),
@@ -43,8 +43,8 @@ const FormGoods: React.FC<Props> = (props) => {
         onSubmit={props.onSubmit}
       >
         <Form layout='horizontal'>
-          <FormItem name='goodsId' label='商品id'>
-            <Input name='goodsId' placeholder='请输入商品id' />
+          <FormItem name='goodsId' label='商品'>
+            <Input name='goodsId' placeholder='请输入商品' />
           </FormItem>
           <FormItem name='title' label='标题'>
             <Input name='title' placeholder='请输入标题' />
@@ -58,9 +58,7 @@ const FormGoods: React.FC<Props> = (props) => {
           <FormItem name='link' label='链接'>
             <Input name='link' placeholder='请输入链接' />
           </FormItem>
-          <SubmitButton type='primary' htmlType='submit'>
-            确定
-          </SubmitButton>
+          <SubmitButton loading={false}>确定</SubmitButton>
         </Form>
       </Formik>
     </Card>

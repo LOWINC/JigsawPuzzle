@@ -53,9 +53,7 @@ const FormBanner: React.FC<Props> = (props) => {
           <FormItem name='link' label='链接'>
             <Input name='link' placeholder='请输入链接' />
           </FormItem>
-          <SubmitButton type='primary' htmlType='submit'>
-            确定
-          </SubmitButton>
+          <SubmitButton loading={false}>确定</SubmitButton>
         </Form>
       </Formik>
     </Card>
