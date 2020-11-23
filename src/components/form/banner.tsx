@@ -1,77 +1,64 @@
 import {JigsawElementsFormType} from "@lowinc/jigsawpuzzle-lib";
-import React, {useEffect, useState} from "react";
-import style from "./index.module.css";
+import {Card} from "antd";
+import {Formik} from "formik";
+import {Form, FormItem, Input, SubmitButton} from "formik-antd";
+import React, {useMemo} from "react";
+import * as yup from "yup";
+
+type Form = JigsawElementsFormType["BannerForm"];
 
 interface Props {
-  data: JigsawElementsFormType["BannerForm"];
-  onSubmit: (data: JigsawElementsFormType["BannerForm"]) => any;
+  data: Form;
+  onSubmit: (data: Form) => any;
 }
 
+const initData: Required<Form> = {
+  img: "",
+  desc: "",
+  link: "",
+  title: "",
+};
+
 const FormBanner: React.FC<Props> = (props) => {
-  const [form, setForm] = useState(props.data);
-
-  useEffect(() => {
-    setForm(props.data);
-    return () => setForm({} as any);
-  }, [props.data]);
-
-  const handleChange = (key: string) => (event: any) =>
-    setForm({
-      ...form,
-      [key]: event.target.value,
-    });
-
-  const handleSubmit = () => {
-    props.onSubmit(form);
-  };
+  const initForm = useMemo(
+    () => ({
+      ...initData,
+      ...props.data,
+    }),
+    [props.data]
+  );
 
   return (
-    <div className='form'>
-      <div className={style["form-cell"]}>
-        <div className={style["form-label"]}>标题</div>
-        <input
-          type='text'
-          className={style["form-value"]}
-          value={form.title}
-          placeholder='请输入标题'
-          onChange={handleChange("title")}
-        />
-      </div>
-      <div className={style["form-cell"]}>
-        <div className={style["form-label"]}>描述</div>
-        <input
-          type='text'
-          className={style["form-value"]}
-          value={form.desc}
-          placeholder='请输入描述'
-          onChange={handleChange("desc")}
-        />
-      </div>
-      <div className={style["form-cell"]}>
-        <div className={style["form-label"]}>图片</div>
-        <input
-          type='text'
-          className={style["form-value"]}
-          value={form.img}
-          placeholder='请输入图片'
-          onChange={handleChange("img")}
-        />
-      </div>
-      <div className={style["form-cell"]}>
-        <div className={style["form-label"]}>链接</div>
-        <input
-          type='text'
-          className={style["form-value"]}
-          value={form.link}
-          placeholder='请输入链接'
-          onChange={handleChange("link")}
-        />
-      </div>
-
-      <button className={style["submit"]} onClick={handleSubmit}>
-        确定
-      </button>
-    </div>
+    <Card>
+      <Formik
+        validationSchema={yup.object({
+          title: yup.string().required("请输入标题"),
+          desc: yup.string().required("请输入描述"),
+          img: yup.string().required("请输入图片"),
+          link: yup.string().required("请输入链接"),
+        })}
+        initialValues={initForm}
+        onSubmit={props.onSubmit}
+      >
+        <Form layout='horizontal'>
+          <FormItem name='title' label='标题'>
+            <Input name='title' placeholder='请输入标题' />
+          </FormItem>
+          <FormItem name='desc' label='描述'>
+            <Input name='desc' placeholder='请输入描述' />
+          </FormItem>
+          <FormItem name='img' label='图片'>
+            <Input name='img' placeholder='请输入图片' />
+          </FormItem>
+          <FormItem name='link' label='链接'>
+            <Input name='link' placeholder='请输入链接' />
+          </FormItem>
+          <SubmitButton type='primary' htmlType='submit'>
+            确定
+          </SubmitButton>
+        </Form>
+      </Formik>
+    </Card>
   );
 };
 

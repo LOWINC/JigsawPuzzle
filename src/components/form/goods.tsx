@@ -47,11 +47,7 @@ const FormGoods: React.FC<Props> = (props) => {
             <Input name='goodsId' placeholder='请输入商品id' />
           </FormItem>
           <FormItem name='title' label='标题'>
-            <Input
-              name='title'
-              defaultValue={props.data.title}
-              placeholder='请输入标题'
-            />
+            <Input name='title' placeholder='请输入标题' />
           </FormItem>
           <FormItem name='desc' label='描述'>
             <Input name='desc' placeholder='请输入描述' />
