@@ -206,13 +206,14 @@ const Jigsaw = () => {
               data={editData}
               type={edit.elementType}
               onSubmit={handleSubmitElementValue}
+              elementIndex={edit.elementIndex}
+              componentIndex={edit.componentIndex}
             />
           </div>
           <div className={style["livePage"]}>
             <div>预览</div>
             <iframe
               id='livePage'
-              // src='http://localhost:10090/mobile'
               src='https://lowinc.github.io/mobile/index.html'
               title='livePage'
               className={style["iframe"]}

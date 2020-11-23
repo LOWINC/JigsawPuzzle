@@ -1,16 +1,35 @@
 import {JigsawElements, JigsawElementsForm} from "@lowinc/jigsawpuzzle-lib";
-import React from "react";
+import {Loading} from "@lowinc/jigsawpuzzle-ui";
+import React, {useEffect, useState} from "react";
 import {JigsawElementsFormConfig} from "../../../setup";
 
 interface Props {
   type: JigsawElements;
   data: any; // TODO:  通过 JigsawElements 限值 data
+  elementIndex: number;
+  componentIndex: number;
   onSubmit: (form: JigsawElementsForm) => any;
 }
 
-const JigsawElementForm: React.FC<Props> = ({data, type, onSubmit}) => {
+const JigsawElementForm: React.FC<Props> = ({
+  data,
+  type,
+  onSubmit,
+  componentIndex,
+  elementIndex,
+}) => {
+  const [isRefresh, setisRefresh] = useState(true);
+
   const element = JigsawElementsFormConfig[type];
-  if (!element) {
+
+  useEffect(() => {
+    setisRefresh(false);
+    setTimeout(() => {
+      setisRefresh(true);
+    }, 30);
+  }, [componentIndex, elementIndex]);
+
+  if (!element || !isRefresh) {
     return null;
   }
 
