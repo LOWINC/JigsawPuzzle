@@ -1,4 +1,5 @@
 import {JigsawComponents, JigsawElements} from "@lowinc/jigsawpuzzle-lib";
+import FormStyleElement from "../components/form-style/element";
 import FormBanner from "../components/form/banner";
 import FormCard from "../components/form/card";
 import FormGoods from "../components/form/goods";
@@ -53,19 +54,29 @@ export const JigsawComponentsRecive: Record<
 export const JigsawElementsFormConfig: Record<
   JigsawElements,
   {
-    Form: any; // TODO: 元素的ts定义？
+    Form:
+      | typeof FormBanner
+      | typeof FormCard
+      | typeof FormGoods
+      | typeof FormText;
+    // TODO: 元素的ts定义？
+    FormStyle: typeof FormStyleElement;
   }
 > = {
   Banner: {
     Form: FormBanner,
+    FormStyle: FormStyleElement,
   },
   Card: {
     Form: FormCard,
+    FormStyle: FormStyleElement,
   },
   Goods: {
     Form: FormGoods,
+    FormStyle: FormStyleElement,
   },
   Text: {
     Form: FormText,
+    FormStyle: FormStyleElement,
   },
 };

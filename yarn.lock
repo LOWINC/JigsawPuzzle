@@ -1413,10 +1413,22 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@lowinc/jigsawpuzzle-lib@0.1.0", "@lowinc/jigsawpuzzle-lib@^0.1.0":
+"@lowinc/jigsawpuzzle-lib@^0.1.0":
   version "0.1.0"
   resolved "https://registry.npmjs.org/@lowinc/jigsawpuzzle-lib/-/jigsawpuzzle-lib-0.1.0.tgz#e926816f97b643573e53190598a96532c52a7811"
   integrity sha512-LfCAZVeWbYuixlVbpYgfGJaH8l3WLACqg6eHyaBB6S2/1eqjpyrbCe1z0DV/IhtFB5jgDIzpN2eDBDnIHHPPwQ==
+  dependencies:
+    "@types/lodash" "^4.14.159"
+    "@types/qs" "^6.9.4"
+    dayjs "^1.8.33"
+    immer "^7.0.14"
+    lodash "^4.17.20"
+    qs "^6.9.4"
+
+"@lowinc/jigsawpuzzle-lib@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/@lowinc/jigsawpuzzle-lib/-/jigsawpuzzle-lib-0.1.2.tgz#35846814233570225a6b5f01b772cc3de9e57dec"
+  integrity sha512-CMFqVnh6J1XBvsW+pOpUnn4OXrF/xn/W8LDpwsRIu/5LjAyEY4HiTFqdVn1bjhbdrweklFrFRAE3AtPs2zOrpg==
   dependencies:
     "@types/lodash" "^4.14.159"
     "@types/qs" "^6.9.4"

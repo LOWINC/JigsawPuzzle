@@ -8,6 +8,7 @@ import get from "lodash/get";
 import React, {useEffect, useMemo, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
+import FormStyleElement from "../../components/form-style/element";
 import ReciverMain from "../../components/reciver-main";
 import {JigsawComponentsRecive, JigsawElements} from "../../setup";
 import {mockData} from "../../setup/data";

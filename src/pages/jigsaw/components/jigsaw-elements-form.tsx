@@ -33,7 +33,12 @@ const JigsawElementForm: React.FC<Props> = ({
     return null;
   }
 
-  return <element.Form data={data} onSubmit={onSubmit} />;
+  return (
+    <div>
+      <element.Form data={data} onSubmit={onSubmit} />
+      <element.FormStyle elementStyle={{}} onSubmit={console.log} />
+    </div>
+  );
 };
 
 export default JigsawElementForm;
