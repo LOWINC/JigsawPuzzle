@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState,} from "react";
 
 export function useCache<T>(dragArr: T[]) {
   const [data, setData] = useState<T[]>([]);

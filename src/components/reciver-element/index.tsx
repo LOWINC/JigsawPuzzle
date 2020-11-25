@@ -1,4 +1,8 @@
 import {
+  JigsawComponentStyle,
+  JigsawElementBase,
+} from "@lowinc/jigsawpuzzle-lib";
+import {
   AppointLayout,
   Banner,
   Block,
@@ -20,7 +24,8 @@ import {Sort} from "../sort";
 import style from "./index.module.css";
 
 interface Props {
-  value: {type: JigsawElements}[];
+  value: JigsawElementBase["value"];
+  style: JigsawComponentStyle;
   index: number;
   componentType: JigsawComponents;
   onElementMove: (params: {
@@ -60,7 +65,7 @@ const ReciverElement: React.FC<Props> = (props) => {
   return (
     <div ref={drop} className={style["component"]}>
       <div className={style["box"]}>
-        <AppointLayout componentType={props.componentType}>
+        <AppointLayout componentType={props.componentType} style={props.style}>
           {props.value.map((item, index) =>
             !!item ? (
               <Sort
@@ -81,6 +86,7 @@ const ReciverElement: React.FC<Props> = (props) => {
                 >
                   {props.componentType === JigsawComponents.Roll && (
                     <Roll
+                      style={props.style}
                       name={get(props.value[index], "value.title")}
                       desc={get(props.value[index], "value.desc")}
                       img={get(props.value[index], "value.img")}
@@ -89,6 +95,7 @@ const ReciverElement: React.FC<Props> = (props) => {
 
                   {props.componentType === JigsawComponents.Big && (
                     <Big
+                      style={props.style}
                       name={get(props.value[index], "value.title")}
                       desc={get(props.value[index], "value.desc")}
                       img={get(props.value[index], "value.img")}
@@ -104,6 +111,7 @@ const ReciverElement: React.FC<Props> = (props) => {
 
                   {props.componentType === JigsawComponents.Title && (
                     <Title
+                      style={props.style}
                       name={get(
                         props.value[index],
                         "value.title",
@@ -114,6 +122,7 @@ const ReciverElement: React.FC<Props> = (props) => {
                   )}
                   {props.componentType === JigsawComponents.Line && (
                     <Line
+                      style={props.style}
                       name={get(props.value[index], "value.title")}
                       desc={get(props.value[index], "value.desc")}
                       img={get(props.value[index], "value.img")}
@@ -121,13 +130,17 @@ const ReciverElement: React.FC<Props> = (props) => {
                   )}
                   {props.componentType === JigsawComponents.Block && (
                     <Block
+                      style={props.style}
                       name={get(props.value[index], "value.title")}
                       desc={get(props.value[index], "value.desc")}
                       img={get(props.value[index], "value.img")}
                     />
                   )}
                   {props.componentType === JigsawComponents.Swiper && (
-                    <Banner img={get(props.value[index], "value.img")} />
+                    <Banner
+                      style={props.style}
+                      img={get(props.value[index], "value.img")}
+                    />
                   )}
                 </div>
               </Sort>

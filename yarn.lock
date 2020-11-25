@@ -1425,10 +1425,10 @@
     lodash "^4.17.20"
     qs "^6.9.4"
 
-"@lowinc/jigsawpuzzle-lib@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.npmjs.org/@lowinc/jigsawpuzzle-lib/-/jigsawpuzzle-lib-0.1.2.tgz#35846814233570225a6b5f01b772cc3de9e57dec"
-  integrity sha512-CMFqVnh6J1XBvsW+pOpUnn4OXrF/xn/W8LDpwsRIu/5LjAyEY4HiTFqdVn1bjhbdrweklFrFRAE3AtPs2zOrpg==
+"@lowinc/jigsawpuzzle-lib@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.npmjs.org/@lowinc/jigsawpuzzle-lib/-/jigsawpuzzle-lib-0.1.4.tgz#e171198d86ef453af9ff3e045d52a1bd7830516a"
+  integrity sha512-83s3ll+OEspGaGS4BnBkvYt8Uh391oYgsDn1kBR5BSo5zT3Sq816yCeJPKSx5C9xAgXCCqs5akWpTjaqvAJ99g==
   dependencies:
     "@types/lodash" "^4.14.159"
     "@types/qs" "^6.9.4"

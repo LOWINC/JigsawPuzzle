@@ -1,6 +1,7 @@
 import {
   JigsawElementBase,
   JigsawElementsForm,
+  JigsawComponentStyle,
   swap,
 } from "@lowinc/jigsawpuzzle-lib";
 import immer from "immer";
@@ -8,7 +9,6 @@ import get from "lodash/get";
 import React, {useEffect, useMemo, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
-import FormStyleElement from "../../components/form-style/element";
 import ReciverMain from "../../components/reciver-main";
 import {JigsawComponentsRecive, JigsawElements} from "../../setup";
 import {mockData} from "../../setup/data";
@@ -32,12 +32,9 @@ const Jigsaw = () => {
     }
   );
 
-  const editData = useMemo(() => {
-    return get(
-      arr[edit.componentIndex],
-      `value[${edit.elementIndex}].value`,
-      {}
-    );
+  // 当前编辑的元素的表单
+  const editElement = useMemo(() => {
+    return get(arr[edit.componentIndex], `value[${edit.elementIndex}]`, {});
   }, [arr, edit.componentIndex, edit.elementIndex]);
 
   const cache = useCache<JigsawElementBase>(arr);
@@ -59,12 +56,14 @@ const Jigsaw = () => {
   }, [arr]);
 
   const handleComponentDropEnd = (item: any, dropResult: any) => {
-    const newArr = immer(arr, (draft) => {
+    const newArr: JigsawElementBase[] = immer(arr, (draft) => {
       return [
         ...draft,
         {
-          ...item,
           __key: new Date().getTime(),
+          type: item.name,
+          value: [],
+          style: {},
         },
       ];
     });
@@ -87,8 +86,8 @@ const Jigsaw = () => {
       if (!multiple) {
         draft[result.index].value = [
           {
-            ...item,
             __key: new Date().getTime(),
+            type: item.type,
             value: [],
           },
         ];
@@ -99,9 +98,10 @@ const Jigsaw = () => {
       const value = [
         ...oldItems,
         {
-          ...item,
           __key: new Date().getTime(),
+          type: item.type,
           value: [],
+          style: {},
         },
       ];
       draft[result.index].value = value;
@@ -165,6 +165,14 @@ const Jigsaw = () => {
     );
   };
 
+  const handleSubmitElementStyle = (form: any) => {
+    // setArr(
+    //   immer(arr, (draft) => {
+    //     draft[edit.componentIndex].value[edit.elementIndex].style = form;
+    //   })
+    // );
+  };
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div className={style["page"]}>
@@ -208,11 +216,11 @@ const Jigsaw = () => {
           <div className={style["form"]}>
             <div>内容</div>
             <JigsawElementForm
-              data={editData}
               type={edit.elementType}
-              onSubmit={handleSubmitElementValue}
               elementIndex={edit.elementIndex}
               componentIndex={edit.componentIndex}
+              valueForm={editElement.value}
+              onSubmit={handleSubmitElementValue}
             />
           </div>
           <div className={style["livePage"]}>

@@ -1,249 +1,470 @@
-export const mockData = [
+import {
+  JigsawComponents,
+  JigsawElements,
+  JigsawElementBase,
+} from "@lowinc/jigsawpuzzle-lib";
+
+export const mockData: JigsawElementBase[] = [
   {
-    name: "Big",
-    type: "Big",
-    __key: 1605682431538,
+    __key: 7,
+    type: JigsawComponents.Swiper,
+    style: {
+      desc: {
+        color: "red",
+        fontSize: 18,
+      },
+      margin: 30,
+      padding: 10,
+      title: {
+        color: "blue",
+        fontSize: 18,
+      },
+    },
     value: [
       {
-        name: "Goods",
-        type: "Goods",
-        __key: 1605682433632,
+        __key: 51,
+        type: JigsawElements.Goods,
         value: {
-          goodsId: "12121212121212",
+          title: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
           img:
             "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
-          desc: "老司机の免费领取商品の简介",
-          link: "https://baidu.com?userId=${thirdUserId}",
-          title: "标题奥术大多",
         },
       },
-    ],
-  },
-  {
-    name: "Swiper",
-    type: "Swiper",
-    index: 1,
-    __key: 1605682466234,
-    value: [
       {
-        name: "Card",
-        type: "Card",
-        index: 0,
-        __key: 1605682478416,
+        __key: 52,
+        type: JigsawElements.Goods,
         value: {
-          img:
-            "https://interest-image-dev.billbear.cn/dev/BUYCARD/vLOg2vQUW7utzimOJDVY75y13ZpDPz0vAMUSXqaB62s=@big",
-        },
-      },
-    ],
-  },
-  {
-    name: "Title",
-    type: "Title",
-    index: 2,
-    __key: 1605682493362,
-    value: [
-      {
-        name: "Text",
-        type: "Text",
-        index: 0,
-        __key: 1605682495662,
-        value: {title: "asdadsad", desc: "1212121212212"},
-      },
-    ],
-  },
-  {
-    name: "Roll",
-    type: "Roll",
-    __key: 1605682332561,
-    value: [
-      {
-        name: "Goods",
-        type: "Goods",
-        __key: 1605682362160,
-        value: {
+          title: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
           img:
             "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
-          title: "LOWINC",
-          desc: "老司机の免费领取商品の简介",
-          goodsId: "12121212121212",
-          link: "https://www.dota2.com.cn/index.htm",
-        },
-      },
-      {
-        name: "Goods",
-        type: "Goods",
-        index: 2,
-        __key: 1605682399841,
-        value: {
-          img:
-            "https://interest-image-dev.billbear.cn/dev/GOODS/A94YWU34mDq9oQ7cGL4aAsc1bJwIa1KUWMvfCncI2qQ=@big",
-          desc: "每月2次222",
-          title: "标题奥术大多111",
-          goodsId: "11212",
-          link:
-            "https://qy-h5-dev.billbear.cn/#/pages/goodsList/resource?typeName=优惠门票key=leyuanshouye",
-        },
-      },
-      {
-        name: "Goods",
-        type: "Goods",
-        __key: 1605682334280,
-        value: {
-          img:
-            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
-          desc: "老司机の随机优惠券の简介",
-          title: "标题奥术大多111",
-          goodsId: "12121212121212",
-          link: "https://www.dota2.com.cn/index.htm",
-        },
-      },
-      {
-        name: "Goods",
-        type: "Goods",
-        __key: 1605682370074,
-        value: {
-          img:
-            "https://interest-image-dev.billbear.cn/dev/BUYCARD/FkKMpwheyHU-XlaVjm0M2eCOibgrlaBmW1s0Nq7k8Qk=@big",
-          goodsId: "11212",
-          title: "LOWINC222",
-          desc: "老司机の随机优惠券の简介",
-          link: "https://www.dota2.com.cn/index.htm",
-        },
-      },
-      {
-        name: "Goods",
-        type: "Goods",
-        index: 3,
-        __key: 1605682407601,
-        value: {
-          img:
-            "https://interest-image-dev.billbear.cn/dev/BUYCARD/vLOg2vQUW7utzimOJDVY75y13ZpDPz0vAMUSXqaB62s=@big",
         },
       },
     ],
   },
   {
-    name: "CubeRow4",
-    type: "CubeRow4",
-    index: 5,
-    __key: 1605686443666,
+    __key: 4,
+    type: JigsawComponents.Title,
+    style: {
+      desc: {
+        color: "red",
+        fontSize: 18,
+      },
+      margin: 30,
+      padding: 10,
+      title: {
+        color: "blue",
+        fontSize: 18,
+      },
+    },
     value: [
       {
-        name: "Goods",
-        type: "Goods",
-        index: 1,
-        __key: 1606116876906,
+        __key: 41,
+        type: JigsawElements.Text,
+
         value: {
-          goodsId: "12121212121212",
-          img:
-            "https://pic4.zhimg.com/80/v2-b9a5594145737b5c42e9f08ac2d6a6ef_1440w.jpg",
-          desc: "老司机の全部优惠券の简介",
-          link: "https://baidu.com?userId=${thirdUserId}",
-          title: "12121",
-        },
-      },
-      {
-        name: "Goods",
-        type: "Goods",
-        index: 2,
-        __key: 1606116971284,
-        value: {
-          goodsId: "12121212121212",
-          img:
-            "https://interest-image-dev.billbear.cn/dev/BUYCARD/FkKMpwheyHU-XlaVjm0M2eCOibgrlaBmW1s0Nq7k8Qk=@big",
-          desc: "老司机の随机优惠券の简介",
-          link:
-            "https://qy-h5-dev.billbear.cn/#/pages/goodsList/resource?typeName=优惠门票key=leyuanshouye",
-          title: "标题",
-        },
-      },
-      {
-        name: "Goods",
-        type: "Goods",
-        index: 0,
-        __key: 1606114688751,
-        value: {
-          goodsId: "12121212121212",
+          title: "老司机的标题",
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
           img:
             "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
-          desc: "老司机の随机优惠券の简介",
-          link: "https://www.dota2.com.cn/index.htm",
-          title: "标题奥术大多",
+        },
+      },
+    ],
+  },
+
+  {
+    __key: 2,
+    type: JigsawComponents.Roll,
+    style: {
+      desc: {
+        color: "red",
+        fontSize: 18,
+      },
+      margin: 30,
+      padding: 10,
+      title: {
+        color: "blue",
+        fontSize: 18,
+      },
+    },
+    value: [
+      {
+        __key: 21,
+        type: JigsawElements.Goods,
+
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
         },
       },
       {
-        name: "Goods",
-        type: "Goods",
-        index: 0,
-        __key: 1605686445875,
+        __key: 22,
+        type: JigsawElements.Goods,
         value: {
-          goodsId: "12121212121212",
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
           img:
-            "https://interest-image-dev.billbear.cn/dev/BUYCARD/FkKMpwheyHU-XlaVjm0M2eCOibgrlaBmW1s0Nq7k8Qk=@big",
-          desc: "老司机の全部优惠券の简介",
-          link:
-            "https://qy-h5-dev.billbear.cn/#/pages/goodsList/resource?typeName=优惠门票key=leyuanshouye",
-          title: "标题奥术大多",
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 23,
+        type: JigsawElements.Banner,
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 24,
+        type: JigsawElements.Goods,
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 25,
+        type: JigsawElements.Goods,
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
         },
       },
     ],
   },
   {
-    name: "Line",
-    type: "Line",
-    index: 2,
-    __key: 1605682522050,
+    __key: 1,
+    type: JigsawComponents.Big,
+    style: {
+      desc: {
+        color: "red",
+        fontSize: 18,
+      },
+      margin: 30,
+      padding: 10,
+      title: {
+        color: "blue",
+        fontSize: 18,
+      },
+    },
     value: [
       {
-        name: "Goods",
-        type: "Goods",
-        index: 0,
-        __key: 1605682525184,
+        __key: 11,
+        type: JigsawElements.Goods,
+
         value: {
+          title: "老司机的标题",
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
           img:
-            "https://interest-image-dev.billbear.cn/dev/BUYCARD/FkKMpwheyHU-XlaVjm0M2eCOibgrlaBmW1s0Nq7k8Qk=@big",
-          goodsId: "dssad",
-          title: "asdadd",
-          desc: "1212121212212",
-          link: "1212",
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 12,
+        type: JigsawElements.Goods,
+
+        value: {
+          title: "老司机的标题",
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 13,
+        type: JigsawElements.Goods,
+
+        value: {
+          title: "老司机的标题",
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
         },
       },
     ],
   },
   {
-    name: "Block",
-    type: "Block",
-    index: 2,
-    __key: 1605682547089,
+    __key: 3,
+    type: JigsawComponents.Cube,
+    style: {
+      desc: {
+        color: "red",
+        fontSize: 18,
+      },
+      margin: 30,
+      padding: 10,
+      title: {
+        color: "blue",
+        fontSize: 18,
+      },
+    },
     value: [
       {
-        name: "Goods",
-        type: "Goods",
-        index: 0,
-        __key: 1605682549818,
+        __key: 31,
+        type: JigsawElements.Goods,
+
         value: {
-          goodsId: "1212",
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
           img:
-            "https://interest-image-dev.billbear.cn/dev/BUYCARD/vLOg2vQUW7utzimOJDVY75y13ZpDPz0vAMUSXqaB62s=@big",
-          desc:
-            "https://interest-image-dev.billbear.cn/dev/BUYCARD/FkKMpwheyHU-XlaVjm0M2eCOibgrlaBmW1s0Nq7k8Qk=@big",
-          link:
-            "https://qy-h5-dev.billbear.cn/#/pages/goodsList/resource?typeName=优惠门票key=leyuanshouye",
-          title: "标题奥术大多",
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
         },
       },
       {
-        name: "Goods",
-        type: "Goods",
-        index: 0,
-        __key: 1605682562090,
+        __key: 32,
+        type: JigsawElements.Goods,
+
         value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
           img:
             "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
-          desc: "asdadadadsdas",
-          title: "121212121212",
-          goodsId: "1111111",
+        },
+      },
+      {
+        __key: 33,
+        type: JigsawElements.Goods,
+
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 34,
+        type: JigsawElements.Goods,
+
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 35,
+        type: JigsawElements.Goods,
+
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 36,
+        type: JigsawElements.Goods,
+
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 37,
+        type: JigsawElements.Goods,
+
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+    ],
+  },
+  {
+    __key: 10,
+    type: JigsawComponents.CubeRow4,
+    style: {
+      desc: {
+        color: "red",
+        fontSize: 18,
+      },
+      margin: 30,
+      padding: 10,
+      title: {
+        color: "blue",
+        fontSize: 18,
+      },
+    },
+    value: [
+      {
+        __key: 41,
+        type: JigsawElements.Goods,
+
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 42,
+        type: JigsawElements.Goods,
+
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 43,
+        type: JigsawElements.Goods,
+
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 44,
+        type: JigsawElements.Goods,
+
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 45,
+        type: JigsawElements.Goods,
+
+        value: {
+          name: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+    ],
+  },
+
+  {
+    __key: 5,
+    type: JigsawComponents.Line,
+    style: {
+      desc: {
+        color: "red",
+        fontSize: 18,
+      },
+      margin: 30,
+      padding: 10,
+      title: {
+        color: "blue",
+        fontSize: 18,
+      },
+    },
+    value: [
+      {
+        __key: 51,
+        type: JigsawElements.Goods,
+        value: {
+          title: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 52,
+        type: JigsawElements.Goods,
+        value: {
+          title: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+    ],
+  },
+  {
+    __key: 6,
+    type: JigsawComponents.Block,
+    style: {
+      desc: {
+        color: "red",
+        fontSize: 18,
+      },
+      margin: 30,
+      padding: 10,
+      title: {
+        color: "blue",
+        fontSize: 18,
+      },
+    },
+    value: [
+      {
+        __key: 51,
+        type: JigsawElements.Goods,
+        value: {
+          title: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+        },
+      },
+      {
+        __key: 52,
+        type: JigsawElements.Goods,
+        value: {
+          title: "老司机的标题",
+          desc: "老司机的描述",
+          link: "https://baidu.com",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
         },
       },
     ],

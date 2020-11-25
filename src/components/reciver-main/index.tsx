@@ -61,6 +61,7 @@ const ReciverMain: React.FC<Props> = (props) => {
                 {item.type}
                 <div className={style["item"]}>
                   <ReciverElement
+                    style={item.style}
                     index={index}
                     componentType={item.type}
                     value={item.value || []}

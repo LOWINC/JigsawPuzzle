@@ -1,19 +1,18 @@
-import {JigsawElementStyle} from "@lowinc/jigsawpuzzle-lib";
+import {JigsawComponentStyle} from "@lowinc/jigsawpuzzle-lib";
 import {Card, Col, Row} from "antd";
 import {Formik} from "formik";
 import {Form, FormItem, Input, SubmitButton} from "formik-antd";
-import merge from "lodash/merge";
 import React from "react";
 
 interface Props {
-  elementStyle: JigsawElementStyle;
-  onSubmit: (data: JigsawElementStyle) => any;
+  elementStyle: JigsawComponentStyle;
+  onSubmit: (data: JigsawComponentStyle) => any;
 }
 
-const initData: Required<JigsawElementStyle> = {
-  margin: [10, 0, 10, 0],
-  padding: [0, 0, 0, 0],
-  borderRadius: 0,
+const initData: Required<JigsawComponentStyle> = {
+  margin: 10,
+  padding: 10,
+  backgroundColor: "#fff",
   title: {
     color: "#14b9d7",
     fontSize: 16,
@@ -38,50 +37,46 @@ const transform = (form: {
   paddingRight: number;
   paddingBottom: number;
   paddingLeft: number;
-}): JigsawElementStyle => ({
-  borderRadius: form.borderRadius,
+}): JigsawComponentStyle => ({
   title: {
-    color: form.titleColor,
-    fontSize: form.titleSize,
+    color: form.titleColor || initData.title.color,
+    fontSize: form.titleSize || initData.title.fontSize,
   },
   desc: {
-    color: form.descColor,
-    fontSize: form.descSize,
+    color: form.descColor || initData.desc.color,
+    fontSize: form.descSize || initData.desc.fontSize,
   },
-  margin: [
-    form.marginTop,
-    form.marginRight,
-    form.marginBottom,
-    form.marginLeft,
-  ],
-  padding: [
-    form.paddingTop,
-    form.paddingRight,
-    form.paddingBottom,
-    form.paddingLeft,
-  ],
+  margin: form.marginBottom || initData.margin,
+  padding: form.paddingBottom || initData.padding,
+});
+
+const transformPropsToInitVal = (
+  style: JigsawComponentStyle
+): Required<JigsawComponentStyle> => ({
+  backgroundColor: "",
+  title: {
+    color: style.title?.color || initData.title.color,
+    fontSize: style.title?.fontSize || initData.title.fontSize,
+  },
+  desc: {
+    color: style.desc?.color || initData.desc.color,
+    fontSize: style.desc?.fontSize || initData.desc.fontSize,
+  },
+  margin: style.margin || initData.margin,
+  padding: style.padding || initData.padding,
 });
 
 const FormStyleElement: React.FC<Props> = (props) => {
-  const initialValue = merge(props.elementStyle, initData);
+  const initialValue = transformPropsToInitVal(props.elementStyle);
 
   const handleSubmit = (form: any) => {
-    const data = merge(initialValue, transform(form));
-    props.onSubmit(data);
+    props.onSubmit(transform(form));
   };
 
   return (
     <Card>
       <Formik initialValues={initialValue} onSubmit={handleSubmit}>
         <Form layout='horizontal'>
-          <FormItem name='borderRadius' label='圆角'>
-            <Input
-              type='number'
-              name='borderRadius'
-              defaultValue={initialValue.borderRadius}
-            />
-          </FormItem>
-
           <Row gutter={10}>
             <Col span={12}>
               <FormItem name='titleColor' label='标题颜色'>
@@ -123,92 +118,22 @@ const FormStyleElement: React.FC<Props> = (props) => {
             </Col>
           </Row>
 
-          <Row gutter={10}>
-            <Col span={4}>外边距：</Col>
-            <Col span={5}>
-              <FormItem name='marginTop'>
-                <Input
-                  name='marginTop'
-                  type='number'
-                  placeholder='上'
-                  defaultValue={initialValue.margin[0]}
-                />
-              </FormItem>
-            </Col>
-            <Col span={5}>
-              <FormItem name='marginRight'>
-                <Input
-                  name='marginRight'
-                  type='number'
-                  placeholder='右'
-                  defaultValue={initialValue.margin[1]}
-                />
-              </FormItem>
-            </Col>
-            <Col span={5}>
-              <FormItem name='marginBottom'>
-                <Input
-                  name='marginBottom'
-                  type='number'
-                  placeholder='下'
-                  defaultValue={initialValue.margin[2]}
-                />
-              </FormItem>
-            </Col>
-            <Col span={5}>
-              <FormItem name='marginLeft'>
-                <Input
-                  name='marginLeft'
-                  type='number'
-                  placeholder='左'
-                  defaultValue={initialValue.margin[3]}
-                />
-              </FormItem>
-            </Col>
-          </Row>
-          <Row gutter={10}>
-            <Col span={4}>内边距：</Col>
-            <Col span={5}>
-              <FormItem name='paddingTop'>
-                <Input
-                  name='paddingTop'
-                  type='number'
-                  placeholder='上'
-                  defaultValue={initialValue.padding[0]}
-                />
-              </FormItem>
-            </Col>
-            <Col span={5}>
-              <FormItem name='paddingRight'>
-                <Input
-                  name='paddingRight'
-                  type='number'
-                  placeholder='右'
-                  defaultValue={initialValue.padding[1]}
-                />
-              </FormItem>
-            </Col>
-            <Col span={5}>
-              <FormItem name='paddingBottom'>
-                <Input
-                  name='paddingBottom'
-                  type='number'
-                  placeholder='下'
-                  defaultValue={initialValue.padding[2]}
-                />
-              </FormItem>
-            </Col>
-            <Col span={5}>
-              <FormItem name='paddingLeft'>
-                <Input
-                  name='paddingLeft'
-                  type='number'
-                  placeholder='左'
-                  defaultValue={initialValue.padding[3]}
-                />
-              </FormItem>
-            </Col>
-          </Row>
+          <FormItem name='margin' label='内间距'>
+            <Input
+              name='margin'
+              type='number'
+              placeholder='上'
+              defaultValue={initialValue.margin}
+            />
+          </FormItem>
+          <FormItem name='pading' label='外边距'>
+            <Input
+              name='pading'
+              type='number'
+              placeholder='上'
+              defaultValue={initialValue.padding}
+            />
+          </FormItem>
 
           <SubmitButton loading={false}>确定</SubmitButton>
         </Form>

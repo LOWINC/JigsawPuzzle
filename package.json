@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@lowinc/jigsawpuzzle-lib": "^0.1.2",
+    "@lowinc/jigsawpuzzle-lib": "^0.1.4",
     "@lowinc/jigsawpuzzle-ui": "0.1.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
