@@ -5,7 +5,7 @@ import {Form, FormItem, Input, SubmitButton} from "formik-antd";
 import React from "react";
 
 interface Props {
-  elementStyle: JigsawComponentStyle;
+  componentStyle: JigsawComponentStyle;
   onSubmit: (data: JigsawComponentStyle) => any;
 }
 
@@ -24,19 +24,12 @@ const initData: Required<JigsawComponentStyle> = {
 };
 
 const transform = (form: {
-  borderRadius: number;
   titleColor: string;
   titleSize: number;
   descColor: string;
   descSize: number;
-  marginTop: number;
-  marginRight: number;
-  marginBottom: number;
-  marginLeft: number;
-  paddingTop: number;
-  paddingRight: number;
-  paddingBottom: number;
-  paddingLeft: number;
+  margin: number;
+  padding: number;
 }): JigsawComponentStyle => ({
   title: {
     color: form.titleColor || initData.title.color,
@@ -46,14 +39,16 @@ const transform = (form: {
     color: form.descColor || initData.desc.color,
     fontSize: form.descSize || initData.desc.fontSize,
   },
-  margin: form.marginBottom || initData.margin,
-  padding: form.paddingBottom || initData.padding,
+  margin: form.margin || initData.margin,
+  padding: form.padding || initData.padding,
 });
 
 const transformPropsToInitVal = (
   style: JigsawComponentStyle
 ): Required<JigsawComponentStyle> => ({
   backgroundColor: "",
+  margin: style.margin || initData.margin,
+  padding: style.padding || initData.padding,
   title: {
     color: style.title?.color || initData.title.color,
     fontSize: style.title?.fontSize || initData.title.fontSize,
@@ -62,12 +57,10 @@ const transformPropsToInitVal = (
     color: style.desc?.color || initData.desc.color,
     fontSize: style.desc?.fontSize || initData.desc.fontSize,
   },
-  margin: style.margin || initData.margin,
-  padding: style.padding || initData.padding,
 });
 
 const FormStyleElement: React.FC<Props> = (props) => {
-  const initialValue = transformPropsToInitVal(props.elementStyle);
+  const initialValue = transformPropsToInitVal(props.componentStyle);
 
   const handleSubmit = (form: any) => {
     props.onSubmit(transform(form));
@@ -122,7 +115,6 @@ const FormStyleElement: React.FC<Props> = (props) => {
             <Input
               name='margin'
               type='number'
-              placeholder='上'
               defaultValue={initialValue.margin}
             />
           </FormItem>
@@ -130,7 +122,6 @@ const FormStyleElement: React.FC<Props> = (props) => {
             <Input
               name='pading'
               type='number'
-              placeholder='上'
               defaultValue={initialValue.padding}
             />
           </FormItem>

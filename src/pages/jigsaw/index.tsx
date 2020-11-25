@@ -24,6 +24,10 @@ const iframe = new Iframe();
 const Jigsaw = () => {
   const [arr, setArr] = useState<JigsawElementBase[]>([]);
 
+  function arrErrorFilter(arr: any[]) {
+    return setArr(arr.filter((item) => !!item));
+  }
+
   const [edit, setEdit] = useState(
     {} as {
       elementIndex: number;
@@ -37,10 +41,15 @@ const Jigsaw = () => {
     return get(arr[edit.componentIndex], `value[${edit.elementIndex}]`, {});
   }, [arr, edit.componentIndex, edit.elementIndex]);
 
+  // 当前编辑组件的样式
+  const editCompoentStyle: JigsawComponentStyle = useMemo(() => {
+    return get(arr[edit.componentIndex], "style", {});
+  }, [arr, edit.componentIndex]);
+
   const cache = useCache<JigsawElementBase>(arr);
 
   useEffect(() => {
-    setArr(cache.data);
+    arrErrorFilter(cache.data);
   }, [cache.data]);
 
   useEffect(() => {
@@ -68,7 +77,7 @@ const Jigsaw = () => {
       ];
     });
 
-    setArr(newArr.filter((item) => !!item));
+    arrErrorFilter(newArr);
   };
 
   const handleElementDropEnd = (
@@ -108,7 +117,7 @@ const Jigsaw = () => {
       return draft;
     });
 
-    setArr(newArr.filter((item) => !!item));
+    arrErrorFilter(newArr);
   };
 
   const handleElementSelect = (params: {
@@ -132,7 +141,7 @@ const Jigsaw = () => {
     if (typeof dragIndex !== "number" || typeof hoverIndex !== "number") {
       return;
     }
-    setArr(swap(arr, dragIndex, hoverIndex));
+    arrErrorFilter(swap(arr, dragIndex, hoverIndex));
   };
 
   const handleElementMove = (params: {
@@ -146,7 +155,7 @@ const Jigsaw = () => {
       return;
     }
 
-    setArr(
+    arrErrorFilter(
       immer(arr, (draft) => {
         draft[componentIndex].value = swap(
           arr[componentIndex].value,
@@ -158,19 +167,19 @@ const Jigsaw = () => {
   };
 
   const handleSubmitElementValue = (form: JigsawElementsForm) => {
-    setArr(
+    arrErrorFilter(
       immer(arr, (draft) => {
         draft[edit.componentIndex].value[edit.elementIndex].value = form;
       })
     );
   };
 
-  const handleSubmitElementStyle = (form: any) => {
-    // setArr(
-    //   immer(arr, (draft) => {
-    //     draft[edit.componentIndex].value[edit.elementIndex].style = form;
-    //   })
-    // );
+  const handleSubmitComponentStyle = (form: JigsawComponentStyle) => {
+    arrErrorFilter(
+      immer(arr, (draft) => {
+        draft[edit.componentIndex].style = form;
+      })
+    );
   };
 
   return (
@@ -186,7 +195,7 @@ const Jigsaw = () => {
             <div>
               <button
                 className={style["reset"]}
-                onClick={() => setArr(mockData as any)}
+                onClick={() => arrErrorFilter(mockData as any)}
               >
                 使用测试数据
               </button>
@@ -219,8 +228,10 @@ const Jigsaw = () => {
               type={edit.elementType}
               elementIndex={edit.elementIndex}
               componentIndex={edit.componentIndex}
+              componentStyle={editCompoentStyle}
               valueForm={editElement.value}
               onSubmit={handleSubmitElementValue}
+              onSubmitComponentStyle={handleSubmitComponentStyle}
             />
           </div>
           <div className={style["livePage"]}>

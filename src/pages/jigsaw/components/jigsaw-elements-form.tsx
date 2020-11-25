@@ -1,4 +1,8 @@
-import {JigsawElements, JigsawElementsForm} from "@lowinc/jigsawpuzzle-lib";
+import {
+  JigsawComponentStyle,
+  JigsawElements,
+  JigsawElementsForm,
+} from "@lowinc/jigsawpuzzle-lib";
 import React, {useEffect, useState} from "react";
 import {JigsawElementsFormConfig} from "../../../setup";
 
@@ -7,7 +11,9 @@ interface Props {
   valueForm: any; // TODO:  通过 JigsawElements 限值 valueForm
   elementIndex: number;
   componentIndex: number;
+  componentStyle: JigsawComponentStyle;
   onSubmit: (form: JigsawElementsForm) => any;
+  onSubmitComponentStyle: (form: JigsawComponentStyle) => any;
 }
 
 const JigsawElementForm: React.FC<Props> = ({
@@ -16,6 +22,8 @@ const JigsawElementForm: React.FC<Props> = ({
   componentIndex,
   elementIndex,
   onSubmit,
+  componentStyle,
+  onSubmitComponentStyle,
 }) => {
   const [isRefresh, setisRefresh] = useState(true);
 
@@ -35,6 +43,10 @@ const JigsawElementForm: React.FC<Props> = ({
   return (
     <div>
       <element.Form data={valueForm} onSubmit={onSubmit} />
+      <element.FormStyle
+        componentStyle={componentStyle}
+        onSubmit={onSubmitComponentStyle}
+      />
     </div>
   );
 };
