@@ -32,30 +32,30 @@ const transform = (form: {
   padding: number;
 }): JigsawComponentStyle => ({
   title: {
-    color: form.titleColor || initData.title.color,
-    fontSize: form.titleSize || initData.title.fontSize,
+    color: form.titleColor ?? initData.title.color,
+    fontSize: form.titleSize ?? initData.title.fontSize,
   },
   desc: {
-    color: form.descColor || initData.desc.color,
-    fontSize: form.descSize || initData.desc.fontSize,
+    color: form.descColor ?? initData.desc.color,
+    fontSize: form.descSize ?? initData.desc.fontSize,
   },
-  margin: form.margin || initData.margin,
-  padding: form.padding || initData.padding,
+  margin: form.margin ?? initData.margin,
+  padding: form.padding ?? initData.padding,
 });
 
 const transformPropsToInitVal = (
   style: JigsawComponentStyle
 ): Required<JigsawComponentStyle> => ({
   backgroundColor: "",
-  margin: style.margin || initData.margin,
-  padding: style.padding || initData.padding,
+  margin: style.margin ?? initData.margin,
+  padding: style.padding ?? initData.padding,
   title: {
-    color: style.title?.color || initData.title.color,
-    fontSize: style.title?.fontSize || initData.title.fontSize,
+    color: style.title?.color ?? initData.title.color,
+    fontSize: style.title?.fontSize ?? initData.title.fontSize,
   },
   desc: {
-    color: style.desc?.color || initData.desc.color,
-    fontSize: style.desc?.fontSize || initData.desc.fontSize,
+    color: style.desc?.color ?? initData.desc.color,
+    fontSize: style.desc?.fontSize ?? initData.desc.fontSize,
   },
 });
 
