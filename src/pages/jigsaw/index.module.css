@@ -2,14 +2,6 @@
   display: flex;
 }
 
-.form,
-.operater,
-.preview {
-  padding: 30px;
-  margin: 30px;
-  border: 1px solid darkcyan;
-}
-
 .operater {
   position: fixed;
   left: 50px;
@@ -19,6 +11,7 @@
 
 .preview {
   margin-left: 500px;
+  box-shadow: 0 0 10px 0 darkcyan;
 }
 
 .form {
@@ -48,7 +41,7 @@
   border: none;
   width: 375px;
   height: 667px;
-  border: 1px solid darkcyan;
+  box-shadow: 0 0 10px 0 darkcyan;
 }
 
 .reset {

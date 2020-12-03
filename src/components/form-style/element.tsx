@@ -10,15 +10,15 @@ interface Props {
 }
 
 const initData: Required<JigsawComponentStyle> = {
-  margin: 10,
-  padding: 10,
+  margin: 0,
+  padding: 0,
   backgroundColor: "#fff",
   title: {
-    color: "#14b9d7",
+    color: "",
     fontSize: 16,
   },
   desc: {
-    color: "#909893",
+    color: "",
     fontSize: 14,
   },
 };
@@ -63,6 +63,7 @@ const FormStyleElement: React.FC<Props> = (props) => {
   const initialValue = transformPropsToInitVal(props.componentStyle);
 
   const handleSubmit = (form: any) => {
+    console.log(form);
     props.onSubmit(transform(form));
   };
 
@@ -118,9 +119,9 @@ const FormStyleElement: React.FC<Props> = (props) => {
               defaultValue={initialValue.margin}
             />
           </FormItem>
-          <FormItem name='pading' label='外边距'>
+          <FormItem name='padding' label='外边距'>
             <Input
-              name='pading'
+              name='padding'
               type='number'
               defaultValue={initialValue.padding}
             />
