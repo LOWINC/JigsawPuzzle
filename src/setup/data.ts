@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import {
   JigsawComponents,
   JigsawElementBase,
@@ -5,6 +6,42 @@ import {
 } from "@lowinc/jigsawpuzzle-lib";
 
 export const mockData: JigsawElementBase[] = [
+  {
+    __key: 1606976317266,
+    type: JigsawComponents.Swiper,
+    value: [
+      {
+        __key: 1606976320303,
+        type: JigsawElements.Card,
+        value: {
+          vipCardId: "121",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+          desc: "老司机の免费领取商品の简介",
+          link: "https://www.dota2.com.cn/index.htm",
+          title: "标题奥术大多",
+        },
+      },
+      {
+        __key: 1606976320303,
+        type: JigsawElements.Card,
+        value: {
+          vipCardId: "121",
+          img:
+            "https://interest-image-dev.billbear.cn/dev/GOODS/tn-iEEAi-2tPTbMjX9CmotygqJ55YAx_08-x4WrFFPs=@big",
+          desc: "老司机の免费领取商品の简介",
+          link: "https://www.dota2.com.cn/index.htm",
+          title: "标题奥术大多",
+        },
+      },
+    ],
+    style: {
+      title: {color: "", fontSize: 16},
+      desc: {color: "", fontSize: 14},
+      margin: 10,
+      padding: 30,
+    },
+  },
   {
     type: JigsawComponents.Big,
     style: {

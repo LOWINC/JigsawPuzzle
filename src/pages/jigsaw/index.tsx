@@ -238,8 +238,8 @@ const Jigsaw = () => {
             <div>预览</div>
             <iframe
               id='livePage'
-              src='https://lowinc.github.io/mobile/index.html'
-              // src='http://localhost:10090/mobile'
+              // src='https://lowinc.github.io/mobile/index.html?id=1'
+              src='http://localhost:10090/mobile'
               title='livePage'
               className={style["iframe"]}
             />
