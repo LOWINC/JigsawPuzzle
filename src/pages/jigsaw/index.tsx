@@ -226,8 +226,6 @@ const Jigsaw = () => {
             <div>内容</div>
             <JigsawElementForm
               type={edit.elementType}
-              elementIndex={edit.elementIndex}
-              componentIndex={edit.componentIndex}
               componentStyle={editCompoentStyle}
               valueForm={editElement.value}
               onSubmit={handleSubmitElementValue}

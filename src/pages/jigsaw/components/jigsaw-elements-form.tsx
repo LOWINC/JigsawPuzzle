@@ -2,29 +2,57 @@ import {
   JigsawComponentStyle,
   JigsawElements,
   JigsawElementsForm,
+  JigsawElementsFormType,
 } from "@lowinc/jigsawpuzzle-lib";
-import React, {useEffect, useState} from "react";
+import React, {ReactElement, useEffect, useState} from "react";
 import {JigsawElementsFormConfig} from "../../../setup";
 
-interface Props {
-  type: JigsawElements;
-  valueForm: any; // TODO:  通过 JigsawElements 限值 valueForm
-  elementIndex: number;
-  componentIndex: number;
+interface BaseProps {
   componentStyle: JigsawComponentStyle;
-  onSubmit: (form: JigsawElementsForm) => any;
   onSubmitComponentStyle: (form: JigsawComponentStyle) => any;
 }
 
-const JigsawElementForm: React.FC<Props> = ({
-  type,
-  valueForm,
-  componentIndex,
-  elementIndex,
-  onSubmit,
-  componentStyle,
-  onSubmitComponentStyle,
-}) => {
+interface PropsBanner extends BaseProps {
+  type: JigsawElements.Banner;
+  valueForm: JigsawElementsFormType["BannerForm"];
+  onSubmit: (form: JigsawElementsFormType["BannerForm"]) => any;
+}
+interface PropsCard extends BaseProps {
+  type: JigsawElements.Card;
+  valueForm: JigsawElementsFormType["CardForm"];
+  onSubmit: (form: JigsawElementsFormType["CardForm"]) => any;
+}
+interface PropsGoods extends BaseProps {
+  type: JigsawElements.Goods;
+  valueForm: JigsawElementsFormType["GoodsForm"];
+  onSubmit: (form: JigsawElementsFormType["GoodsForm"]) => any;
+}
+interface PropsText extends BaseProps {
+  type: JigsawElements.Text;
+  valueForm: JigsawElementsFormType["TextForm"];
+  onSubmit: (form: JigsawElementsFormType["TextForm"]) => any;
+}
+
+interface PropsAll extends BaseProps {
+  type: JigsawElements;
+  valueForm: any;
+  onSubmit: (form: JigsawElementsForm) => any;
+}
+
+function JigsawElementForm(props: PropsBanner): ReactElement;
+function JigsawElementForm(props: PropsCard): ReactElement;
+function JigsawElementForm(props: PropsGoods): ReactElement;
+function JigsawElementForm(props: PropsText): ReactElement;
+function JigsawElementForm(props: PropsAll): ReactElement;
+function JigsawElementForm(props: PropsAll): ReactElement {
+  const {
+    type,
+    valueForm,
+    onSubmit,
+    componentStyle,
+    onSubmitComponentStyle,
+  } = props;
+
   const [isRefresh, setisRefresh] = useState(true);
 
   const element = JigsawElementsFormConfig[type];
@@ -34,10 +62,10 @@ const JigsawElementForm: React.FC<Props> = ({
     setTimeout(() => {
       setisRefresh(true);
     }, 30);
-  }, [componentIndex, elementIndex]);
+  }, []);
 
   if (!element || !isRefresh) {
-    return null;
+    return <div></div>;
   }
 
   return (
@@ -49,6 +77,6 @@ const JigsawElementForm: React.FC<Props> = ({
       />
     </div>
   );
-};
+}
 
 export default JigsawElementForm;
