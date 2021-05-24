@@ -4,8 +4,8 @@ import {
   JigsawElementsForm,
   JigsawElementsFormType,
 } from "@lowinc/jigsawpuzzle-lib";
-import React, {ReactElement, useEffect, useState} from "react";
-import {JigsawElementsFormConfig} from "../../../setup";
+import React, { ReactElement, useEffect, useState } from "react";
+import { JigsawElementsFormConfig } from "../../../setup";
 
 interface BaseProps {
   componentStyle: JigsawComponentStyle;
@@ -39,12 +39,12 @@ interface PropsAll extends BaseProps {
   onSubmit: (form: JigsawElementsForm) => any;
 }
 
-function JigsawElementForm(props: PropsBanner): ReactElement;
-function JigsawElementForm(props: PropsCard): ReactElement;
-function JigsawElementForm(props: PropsGoods): ReactElement;
-function JigsawElementForm(props: PropsText): ReactElement;
-function JigsawElementForm(props: PropsAll): ReactElement;
-function JigsawElementForm(props: PropsAll): ReactElement {
+// function JigsawElementForm(props: PropsBanner): ReactElement;
+// function JigsawElementForm(props: PropsCard): ReactElement;
+// function JigsawElementForm(props: PropsGoods): ReactElement;
+// function JigsawElementForm(props: PropsText): ReactElement;
+// function JigsawElementForm(props: PropsAll): ReactElement;
+function JigsawElementForm (props: PropsAll): ReactElement {
   const {
     type,
     valueForm,

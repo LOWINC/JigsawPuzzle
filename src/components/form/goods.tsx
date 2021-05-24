@@ -1,18 +1,20 @@
-import {JigsawElementsFormType} from "@lowinc/jigsawpuzzle-lib";
-import {Card} from "antd";
-import {Formik} from "formik";
-import {Form, FormItem, Input, SubmitButton} from "formik-antd";
-import React, {useMemo} from "react";
-import * as yup from "yup";
+import { JigsawElementsFormType } from "@lowinc/jigsawpuzzle-lib";
+import { Button, Card, Form, Input, } from 'antd';
+import React, { useMemo } from "react";
 
-type Form = JigsawElementsFormType["GoodsForm"];
+
+type IForm = JigsawElementsFormType["GoodsForm"];
 
 interface Props {
-  data: Form;
-  onSubmit: (data: Form) => any;
+  data: IForm;
+  onSubmit: (data: IForm) => any;
 }
 
-const initData: Required<Form> = {
+const layout = {
+  wrapperCol: { span: 16 },
+};
+
+const initData: Required<IForm> = {
   goodsId: "",
   img: "",
   desc: "",
@@ -21,6 +23,9 @@ const initData: Required<Form> = {
 };
 
 const FormGoods: React.FC<Props> = (props) => {
+
+  const [form] = Form.useForm<IForm>();
+
   const initForm = useMemo(
     () => ({
       ...initData,
@@ -29,39 +34,61 @@ const FormGoods: React.FC<Props> = (props) => {
     [props.data]
   );
 
+  const onFinish = async (values: any) => {
+    console.log('onFinish', values)
+
+    try {
+      const fields = await form.validateFields()
+      console.log('Success:', fields);
+    } catch (error) {
+      console.log('Failed:', error);
+    }
+  };
+
   return (
     <Card>
-      <Formik
-        validationSchema={yup.object({
-          goodsId: yup.string().required("请输入商品"),
-          title: yup.string().required("请输入标题"),
-          desc: yup.string().required("请输入描述"),
-          img: yup.string().required("请输入图片"),
-          link: yup.string().required("请输入链接"),
-        })}
+      <Form
+        {...layout}
+        form={form}
+        name="basic"
         initialValues={initForm}
-        onSubmit={props.onSubmit}
+        onFinish={onFinish}
       >
-        <Form layout='horizontal'>
-          <FormItem name='goodsId' label='商品'>
-            <Input name='goodsId' placeholder='请输入商品' />
-          </FormItem>
-          <FormItem name='title' label='标题'>
-            <Input name='title' placeholder='请输入标题' />
-          </FormItem>
-          <FormItem name='desc' label='描述'>
-            <Input name='desc' placeholder='请输入描述' />
-          </FormItem>
-          <FormItem name='img' label='图片'>
-            <Input name='img' placeholder='请输入图片' />
-          </FormItem>
-          <FormItem name='link' label='链接'>
-            <Input name='link' placeholder='请输入链接' />
-          </FormItem>
-          <SubmitButton loading={false}>确定</SubmitButton>
-        </Form>
-      </Formik>
-    </Card>
+        <Form.Item name='goodsId' label='商品ID' rules={[
+          {
+            required: true,
+            message: "请输入商品",
+          }
+        ]}>
+          <Input placeholder='请输入商品' />
+        </Form.Item>
+        <Form.Item name='title' label='标题' rules={[
+          ({ getFieldValue }) => ({
+            validator (rule, value) {
+              if (!value) {
+                return Promise.reject(new Error('请输入标题'))
+              }
+              return Promise.resolve()
+            }
+          })
+        ]}>
+          <Input placeholder='请输入标题' />
+        </Form.Item>
+        <Form.Item name='desc' label='描述'>
+          <Input placeholder='请输入描述' />
+        </Form.Item>
+        <Form.Item name='img' label='图片'>
+          <Input placeholder='请输入图片' />
+        </Form.Item>
+        <Form.Item name='link' label='链接'>
+          <Input placeholder='请输入链接' />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit"> Submit </Button>
+        </Form.Item>
+      </Form>
+    </Card >
+
   );
 };
 
