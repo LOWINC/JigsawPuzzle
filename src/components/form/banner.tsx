@@ -1,61 +1,58 @@
+import ProForm, {ProFormText} from "@ant-design/pro-form";
 import {JigsawElementsFormType} from "@lowinc/jigsawpuzzle-lib";
-import {Card} from "antd";
-import {Formik} from "formik";
-import {Form, FormItem, Input, SubmitButton} from "formik-antd";
-import React, {useMemo} from "react";
-import * as yup from "yup";
+import {Card, Form} from "antd";
+import React from "react";
 
-type Form = JigsawElementsFormType["BannerForm"];
+type BannerForm = JigsawElementsFormType["BannerForm"];
 
 interface Props {
-  data: Form;
-  onSubmit: (data: Form) => any;
+  data: BannerForm;
+  onSubmit: (data: BannerForm) => any;
 }
 
-const initData: Required<Form> = {
-  img: "",
-  desc: "",
-  link: "",
-  title: "",
-};
-
 const FormBanner: React.FC<Props> = (props) => {
-  const initForm = useMemo(
-    () => ({
-      ...initData,
-      ...props.data,
-    }),
-    [props.data]
-  );
+  const [form] = Form.useForm();
 
   return (
     <Card>
-      <Formik
-        validationSchema={yup.object({
-          title: yup.string().required("请输入标题"),
-          desc: yup.string().required("请输入描述"),
-          img: yup.string().required("请输入图片"),
-          link: yup.string().required("请输入链接"),
-        })}
-        initialValues={initForm}
-        onSubmit={props.onSubmit}
+      <ProForm<BannerForm>
+        initialValues={props.data}
+        onReset={() => {
+          form.resetFields();
+        }}
+        onFinish={async (data) => {
+          props.onSubmit(data);
+        }}
       >
-        <Form layout='horizontal'>
-          <FormItem name='title' label='标题'>
-            <Input name='title' placeholder='请输入标题' />
-          </FormItem>
-          <FormItem name='desc' label='描述'>
-            <Input name='desc' placeholder='请输入描述' />
-          </FormItem>
-          <FormItem name='img' label='图片'>
-            <Input name='img' placeholder='请输入图片' />
-          </FormItem>
-          <FormItem name='link' label='链接'>
-            <Input name='link' placeholder='请输入链接' />
-          </FormItem>
-          <SubmitButton loading={false}>确定</SubmitButton>
-        </Form>
-      </Formik>
+        <ProFormText
+          required
+          rules={[{required: true, message: "请输入标题"}]}
+          label='标题'
+          name='title'
+          placeholder='请输入标题'
+        />
+        <ProFormText
+          required
+          rules={[{required: true, message: "请输入描述"}]}
+          label='描述'
+          name='desc'
+          placeholder='请输入描述'
+        />
+        <ProFormText
+          required
+          rules={[{required: true, message: "请输入图片"}]}
+          label='图片'
+          name='img'
+          placeholder='请输入图片'
+        />
+        <ProFormText
+          required
+          rules={[{required: true, message: "请输入链接"}]}
+          label='链接'
+          name='link'
+          placeholder='请输入链接'
+        />
+      </ProForm>
     </Card>
   );
 };

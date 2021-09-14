@@ -1,94 +1,66 @@
-import { JigsawElementsFormType } from "@lowinc/jigsawpuzzle-lib";
-import { Button, Card, Form, Input, } from 'antd';
-import React, { useMemo } from "react";
+import ProForm, {ProFormText} from "@ant-design/pro-form";
+import {JigsawElementsFormType} from "@lowinc/jigsawpuzzle-lib";
+import {Card, Form} from "antd";
+import React from "react";
 
-
-type IForm = JigsawElementsFormType["GoodsForm"];
+type GoodsForm = JigsawElementsFormType["GoodsForm"];
 
 interface Props {
-  data: IForm;
-  onSubmit: (data: IForm) => any;
+  data: GoodsForm;
+  onSubmit: (data: GoodsForm) => any;
 }
 
-const layout = {
-  wrapperCol: { span: 16 },
-};
-
-const initData: Required<IForm> = {
-  goodsId: "",
-  img: "",
-  desc: "",
-  link: "",
-  title: "",
-};
-
 const FormGoods: React.FC<Props> = (props) => {
-
-  const [form] = Form.useForm<IForm>();
-
-  const initForm = useMemo(
-    () => ({
-      ...initData,
-      ...props.data,
-    }),
-    [props.data]
-  );
-
-  const onFinish = async (values: any) => {
-    console.log('onFinish', values)
-
-    try {
-      const fields = await form.validateFields()
-      console.log('Success:', fields);
-    } catch (error) {
-      console.log('Failed:', error);
-    }
-  };
+  const [form] = Form.useForm();
 
   return (
     <Card>
-      <Form
-        {...layout}
-        form={form}
-        name="basic"
-        initialValues={initForm}
-        onFinish={onFinish}
+      <ProForm<GoodsForm>
+        initialValues={props.data}
+        onReset={() => {
+          form.resetFields();
+        }}
+        onFinish={async (data) => {
+          props.onSubmit(data);
+        }}
       >
-        <Form.Item name='goodsId' label='商品ID' rules={[
-          {
-            required: true,
-            message: "请输入商品",
-          }
-        ]}>
-          <Input placeholder='请输入商品' />
-        </Form.Item>
-        <Form.Item name='title' label='标题' rules={[
-          ({ getFieldValue }) => ({
-            validator (rule, value) {
-              if (!value) {
-                return Promise.reject(new Error('请输入标题'))
-              }
-              return Promise.resolve()
-            }
-          })
-        ]}>
-          <Input placeholder='请输入标题' />
-        </Form.Item>
-        <Form.Item name='desc' label='描述'>
-          <Input placeholder='请输入描述' />
-        </Form.Item>
-        <Form.Item name='img' label='图片'>
-          <Input placeholder='请输入图片' />
-        </Form.Item>
-        <Form.Item name='link' label='链接'>
-          <Input placeholder='请输入链接' />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit"> Submit </Button>
-        </Form.Item>
-      </Form>
-    </Card >
-
+        <ProFormText
+          name='goodsId'
+          label='商品ID'
+          required
+          rules={[{required: true, message: "请输入商品"}]}
+          placeholder='请输入商品'
+        />
+        <ProFormText
+          name='title'
+          label='标题'
+          required
+          rules={[{required: true, message: "请输入标题"}]}
+          placeholder='请输入标题'
+        />
+        <ProFormText
+          required
+          rules={[{required: true, message: "请输入描述"}]}
+          name='desc'
+          label='描述'
+          placeholder='请输入描述'
+        />
+        <ProFormText
+          required
+          rules={[{required: true, message: "请输入图片"}]}
+          name='img'
+          label='图片'
+          placeholder='请输入图片'
+        />
+        <ProFormText
+          required
+          rules={[{required: true, message: "请输入链接"}]}
+          name='link'
+          label='链接'
+          placeholder='请输入链接'
+        />
+      </ProForm>
+    </Card>
   );
 };
 

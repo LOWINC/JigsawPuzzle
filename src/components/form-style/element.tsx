@@ -1,7 +1,6 @@
+import ProForm, {ProFormColorPicker} from "@ant-design/pro-form";
 import {JigsawComponentStyle} from "@lowinc/jigsawpuzzle-lib";
-import {Card, Col, Row} from "antd";
-import {Formik} from "formik";
-import {Form, FormItem, Input, SubmitButton} from "formik-antd";
+import {Card, Col, Form, InputNumber, Row} from "antd";
 import React from "react";
 
 interface Props {
@@ -61,75 +60,49 @@ const transformPropsToInitVal = (
 
 const FormStyleElement: React.FC<Props> = (props) => {
   const initialValue = transformPropsToInitVal(props.componentStyle);
-
-  const handleSubmit = (form: any) => {
-    console.log(form);
-    props.onSubmit(transform(form));
-  };
+  const [form] = Form.useForm();
 
   return (
     <Card>
-      <Formik initialValues={initialValue} onSubmit={handleSubmit}>
-        <Form layout='horizontal'>
-          <Row gutter={10}>
-            <Col span={12}>
-              <FormItem name='titleColor' label='标题颜色'>
-                <Input
-                  type='color'
-                  name='titleColor'
-                  defaultValue={initialValue.title.color}
-                />
-              </FormItem>
-            </Col>
-            <Col span={12}>
-              <FormItem name='titleSize' label='标题字号'>
-                <Input
-                  name='titleSize'
-                  type='number'
-                  defaultValue={initialValue.title.fontSize}
-                />
-              </FormItem>
-            </Col>
-          </Row>
-          <Row gutter={10}>
-            <Col span={12}>
-              <FormItem name='descColor' label='描述颜色'>
-                <Input
-                  type='color'
-                  name='descColor'
-                  defaultValue={initialValue.desc.color}
-                />
-              </FormItem>
-            </Col>
-            <Col span={12}>
-              <FormItem name='descSize' label='描述字号'>
-                <Input
-                  name='descSize'
-                  type='number'
-                  defaultValue={initialValue.desc.fontSize}
-                />
-              </FormItem>
-            </Col>
-          </Row>
+      <ProForm<JigsawComponentStyle>
+        initialValues={initialValue}
+        onReset={() => {
+          form.resetFields();
+        }}
+        onFinish={async (data) => {
+          // props.onSubmit(transform(data));
+        }}
+      >
+        <Row gutter={10}>
+          <Col span={12}>
+            <ProFormColorPicker name='titleColor' label='标题颜色' />
+          </Col>
+          <Col span={12}>
+            <Form.Item name='titleSize' label='标题字号'>
+              <InputNumber name='titleSize' />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={10}>
+          <Col span={12}>
+            <Form.Item name='descColor' label='描述颜色'>
+              <ProFormColorPicker />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item name='descSize' label='描述字号'>
+              <InputNumber />
+            </Form.Item>
+          </Col>
+        </Row>
 
-          <FormItem name='margin' label='内间距'>
-            <Input
-              name='margin'
-              type='number'
-              defaultValue={initialValue.margin}
-            />
-          </FormItem>
-          <FormItem name='padding' label='外边距'>
-            <Input
-              name='padding'
-              type='number'
-              defaultValue={initialValue.padding}
-            />
-          </FormItem>
-
-          <SubmitButton loading={false}>确定</SubmitButton>
-        </Form>
-      </Formik>
+        <Form.Item name='margin' label='内间距'>
+          <InputNumber />
+        </Form.Item>
+        <Form.Item name='padding' label='外边距'>
+          <InputNumber />
+        </Form.Item>
+      </ProForm>
     </Card>
   );
 };
